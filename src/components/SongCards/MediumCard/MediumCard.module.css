@@ -1,7 +1,7 @@
 .medium-card {
   display: flex;
   flex-direction: column;
-  width: 230px;
+  width: 220px;
   background: rgb(122, 113, 113);
   border-radius: 5px;
   overflow: hidden;

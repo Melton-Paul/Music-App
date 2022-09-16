@@ -1,0 +1,26 @@
+.similarSongs {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .similarSongs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 800px) {
+  .similarSongs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1000px) {
+  .similarSongs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .similarSongs {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

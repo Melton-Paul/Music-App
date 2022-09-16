@@ -26,7 +26,7 @@ code {
 main {
   display: flex;
   flex-direction: column;
-  max-width: 1100px;
+  max-width: 1440px;
   width: 100%;
   padding: 0 2rem;
   padding-top: 10rem;
