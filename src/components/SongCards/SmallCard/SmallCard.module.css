@@ -1,0 +1,32 @@
+.small-card {
+  display: flex;
+  width: 400px;
+  background: rgb(122, 113, 113);
+  align-items: center;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.small-card .text {
+  font-size: 1.6rem;
+  color: white;
+}
+
+.small-card .album {
+  max-width: 100px;
+  width: 100%;
+  margin-right: 2rem;
+}
+
+.small-card .play {
+  width: 50px;
+  position: absolute;
+  right: 15px;
+  border-radius: 50px;
+}
+.play:hover {
+  transform: scale(1.1);
+}
