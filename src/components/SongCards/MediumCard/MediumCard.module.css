@@ -1,0 +1,48 @@
+.medium-card {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  background: rgb(122, 113, 113);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.3s;
+  color: white;
+  padding: 1rem;
+}
+
+.medium-card .img {
+  width: 100%;
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden;
+}
+.medium-card .text {
+  font-size: 1.6rem;
+}
+.medium-card .desc {
+  width: 100%;
+  margin-top: 0;
+  opacity: 0.7;
+  font-size: 1.2rem;
+}
+
+.medium-card .album {
+  width: 100%;
+}
+.play {
+  position: absolute;
+  z-index: 2;
+  bottom: 15px;
+  right: 10px;
+  width: 50px;
+}
+.play:hover {
+  transform: scale(1.1);
+}
+
+.medium-card:hover {
+  background: rgba(122, 113, 113, 0.9);
+}

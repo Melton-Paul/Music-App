@@ -8,6 +8,7 @@
   position: relative;
   cursor: pointer;
   z-index: 1;
+  transition: all 0.3s;
 }
 
 .small-card .text {
@@ -29,4 +30,8 @@
 }
 .play:hover {
   transform: scale(1.1);
+}
+
+.small-card:hover {
+  background: rgba(122, 113, 113, 0.8);
 }
