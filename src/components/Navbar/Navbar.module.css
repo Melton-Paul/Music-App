@@ -86,5 +86,6 @@
   .navbar-list.collapsed {
     max-height: 100vh;
     opacity: 1;
+    display: flex;
   }
 }
