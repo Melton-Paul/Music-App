@@ -1,0 +1,16 @@
+.mostrecent {
+  display: grid;
+  gap: 1rem;
+  transition: all.15s;
+}
+
+@media screen and (min-width: 800px) {
+  .mostrecent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .mostrecent {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

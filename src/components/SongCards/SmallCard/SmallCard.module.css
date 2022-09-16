@@ -1,6 +1,6 @@
 .small-card {
   display: flex;
-  width: 400px;
+  width: 100%;
   background: rgb(122, 113, 113);
   align-items: center;
   border-radius: 5px;
@@ -34,4 +34,10 @@
 
 .small-card:hover {
   background: rgba(122, 113, 113, 0.8);
+}
+
+@media screen and (min-width: 768px) {
+  .small-card {
+    width: 400px;
+  }
 }
