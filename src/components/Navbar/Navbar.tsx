@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "./Navbar.module.css";
+import authContext from "../../store/auth-context";
+import { Link } from "react-router-dom";
 const logo = require("../../images/logomusic.png");
 const expand = require("../../images/expand-arrow.png");
 
 export default function Navbar() {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const authCtx = React.useContext(authContext);
 
   function toggleExpanded() {
     setIsExpanded((prev) => !prev);
@@ -12,10 +15,10 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles["logo-container"]}>
+      <Link to="/" className={styles["logo-container"]}>
         <img src={logo} alt="" width="60px" height="50px" />
         <p>Music App</p>
-      </div>
+      </Link>
       <img
         onClick={toggleExpanded}
         className={styles.expand}
@@ -30,6 +33,13 @@ export default function Navbar() {
         <li>Library</li>
         <li>Account</li>
         <li>Favorites</li>
+        {authCtx.isLoggedIn ? (
+          <button onClick={authCtx.logOut}>Log Out</button>
+        ) : (
+          <Link to="login">
+            <button>Log In</button>
+          </Link>
+        )}
       </ul>
     </nav>
   );

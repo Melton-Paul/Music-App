@@ -1,5 +1,6 @@
 import React from "react";
 import authContext from "../../store/auth-context";
+import { useNavigate } from "react-router";
 
 export default function Auth() {
   const [userDetails, setUserDetails] = React.useState({
@@ -12,6 +13,7 @@ export default function Auth() {
   });
   const [isLogin, setIsLogin] = React.useState(true);
   const authCtx = React.useContext(authContext);
+  const navigate = useNavigate();
 
   function handleChange(e: any) {
     const { name, value } = e.target;
@@ -63,6 +65,7 @@ export default function Auth() {
           new Date().getTime() + +data.expiresIn * 1000
         );
         authCtx.logIn(data.localId, data.idToken, expirationTime.toISOString());
+        navigate("/");
       })
       .catch((err) => console.log(err));
   }
