@@ -1,4 +1,5 @@
 import React from "react";
+import authContext from "../../store/auth-context";
 
 export default function Auth() {
   const [userDetails, setUserDetails] = React.useState({
@@ -10,6 +11,7 @@ export default function Auth() {
     isTouched: false,
   });
   const [isLogin, setIsLogin] = React.useState(true);
+  const authCtx = React.useContext(authContext);
 
   function handleChange(e: any) {
     const { name, value } = e.target;
@@ -29,6 +31,40 @@ export default function Auth() {
       setConfirmPass((prev) => ({ ...prev, isTouched: true }));
       return;
     }
+
+    let apiCall;
+    if (isLogin) {
+      apiCall =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAasBNs63AV_6TlQIsEbmOQZa_ffeo9qn0";
+    } else {
+      apiCall =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAasBNs63AV_6TlQIsEbmOQZa_ffeo9qn0";
+    }
+
+    fetch(apiCall, {
+      method: "POST",
+      body: JSON.stringify({
+        email: userDetails.user,
+        password: userDetails.pass,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Your request cannot be completed at this time");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        const expirationTime = new Date(
+          new Date().getTime() + +data.expiresIn * 1000
+        );
+        authCtx.logIn(data.localId, data.idToken, expirationTime.toISOString());
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -42,6 +78,7 @@ export default function Auth() {
           min="3"
           value={userDetails.user}
           onChange={handleChange}
+          name="user"
         />
         <input
           type="password"
@@ -50,6 +87,7 @@ export default function Auth() {
           placeholder="Password"
           value={userDetails.pass}
           onChange={handleChange}
+          name="pass"
         />
         {!isLogin && (
           <input
