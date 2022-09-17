@@ -11,6 +11,7 @@
   transition: all 0.3s;
   color: white;
   padding: 1rem;
+  box-shadow: 0px 2px 7px 3px #cccc;
 }
 
 .medium-card .img {
