@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import MainPage from "./pages/MainPage";
 import authContext from "./store/auth-context";
 import { Routes, Route } from "react-router-dom";
+import PlaySong from "./components/PlaySong/PlaySong";
 
 function App() {
   const authCtx = React.useContext(authContext);
@@ -17,6 +18,7 @@ function App() {
           <Route path="*" element={<MainPage />} />
         </Routes>
       </main>
+      <PlaySong />
     </div>
   );
 }

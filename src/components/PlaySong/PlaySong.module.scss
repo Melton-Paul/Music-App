@@ -1,0 +1,48 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background: lightblue;
+  padding: 0;
+  z-index: 5;
+
+  .play {
+    max-width: 45px;
+    width: 100%;
+    cursor: pointer;
+  }
+  .play:hover {
+    transform: scale(1.05);
+  }
+}
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.controls {
+  display: flex;
+}
+
+.progress_outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.progress_bar-outer {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 5px;
+  height: 5px;
+  background: rgb(241, 241, 241);
+  margin: 1rem;
+  overflow: hidden;
+}
+
+.progress_bar-inner {
+  background: white;
+  height: 100%;
+  width: 16%;
+}
