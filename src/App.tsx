@@ -5,9 +5,11 @@ import MainPage from "./pages/MainPage";
 import authContext from "./store/auth-context";
 import { Routes, Route } from "react-router-dom";
 import PlaySong from "./components/PlaySong/PlaySong";
+import userDataContext from "./store/userData-context";
 
 function App() {
   const authCtx = React.useContext(authContext);
+  const userDataCtx = React.useContext(userDataContext);
   return (
     <div>
       <Navbar />
@@ -18,7 +20,7 @@ function App() {
           <Route path="*" element={<MainPage />} />
         </Routes>
       </main>
-      <PlaySong />
+      {userDataCtx.song.id && <PlaySong />}
     </div>
   );
 }

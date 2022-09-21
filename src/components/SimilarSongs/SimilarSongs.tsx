@@ -11,8 +11,10 @@ export default function SimilarSongs() {
           img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
           name="He Got A Gun"
           desc="New album by Bizarre"
+          id="bizarre"
+          artist="Bizarre"
         />
-        <MediumCard
+        {/* <MediumCard
           img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
           name="He Got A Gun"
           desc="New album by Bizarre"
@@ -31,7 +33,7 @@ export default function SimilarSongs() {
           img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
           name="He Got A Gun"
           desc="New album by Bizarre"
-        />
+        /> */}
       </article>
     </section>
   );

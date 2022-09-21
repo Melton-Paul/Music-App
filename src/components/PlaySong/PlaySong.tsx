@@ -1,12 +1,44 @@
 import React from "react";
 import styles from "./PlaySong.module.scss";
-const playIcon = require("../../images/play.png");
-const pauseIcon = require("../../images/pause.png");
-const sampleAudio = require("../../songs/sample.mp3");
+import userDataContext from "../../store/userData-context";
+import SmallCard from "../SongCards/SmallCard/SmallCard";
 
 export default function PlaySong() {
+  const userDataCtx = React.useContext(userDataContext);
+  const [songData, setSongData] = React.useState({
+    img: "",
+    name: "",
+    artist: "",
+    desc: "",
+    id: "",
+  });
+
+  // React.useEffect(() => {
+  //   if (!userDataCtx.song.id) {
+  //     return;
+  //   }
+  //   fetch(
+  //     `https://songs-34a41-default-rtdb.firebaseio.com/${userDataCtx.song.id}.json`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setSongData(data));
+  // }, [userDataCtx.song.id]);
+
+  React.useEffect(() => {
+    setSongData(userDataCtx.song);
+  }, [userDataCtx.song]);
+
+  console.log(songData);
+
   return (
     <section className={styles.container}>
+      <SmallCard
+        img={songData.img}
+        name={songData.name}
+        id={songData.id}
+        desc={songData.desc}
+        artist={songData.artist}
+      />
       <div className={styles["controls-container"]}>
         {/* <div className={styles.controls}>
           <img
@@ -23,9 +55,7 @@ export default function PlaySong() {
           </div>
           <span>3:00</span>
         </div>  */}
-        <audio controls>
-          <source src="https://www.computerhope.com/jargon/m/example.mp3" />
-        </audio>
+        <audio controls></audio>
       </div>
     </section>
   );

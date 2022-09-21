@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { AuthContextProvider } from "./store/auth-context";
+import { UserDataContextProvider } from "./store/userData-context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <AuthContextProvider>
-      <App />
+      <UserDataContextProvider>
+        <App />
+      </UserDataContextProvider>
     </AuthContextProvider>
   </BrowserRouter>
 );

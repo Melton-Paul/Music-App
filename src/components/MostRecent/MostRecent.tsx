@@ -1,37 +1,26 @@
 import React from "react";
 import styles from "./MostRecent.module.css";
 import SmallCard from "../SongCards/SmallCard/SmallCard";
+import userDataContext from "../../store/userData-context";
 
 export default function MostRecent() {
+  const userDataCtx = React.useContext(userDataContext);
+
+  const recentHtml = userDataCtx.recents.map((song) => (
+    <SmallCard
+      img={song.img}
+      name={song.name}
+      id={song.id}
+      artist={song.artist}
+      desc={song.desc}
+      key={song.id}
+    />
+  ));
+
   return (
     <section>
       <h2>Your Recents</h2>
-      <article className={styles.mostrecent}>
-        <SmallCard
-          img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
-          name="He Got A Gun"
-        />
-        <SmallCard
-          img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
-          name="He Got A Gun"
-        />
-        <SmallCard
-          img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
-          name="He Got A Gun"
-        />
-        <SmallCard
-          img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
-          name="He Got A Gun"
-        />
-        <SmallCard
-          img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
-          name="He Got A Gun"
-        />
-        <SmallCard
-          img="https://i.scdn.co/image/ab67616d0000b2730748978f463f71da8b4486ad"
-          name="He Got A Gun"
-        />
-      </article>
+      <article className={styles.mostrecent}>{recentHtml}</article>
     </section>
   );
 }
