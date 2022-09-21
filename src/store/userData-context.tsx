@@ -68,16 +68,20 @@ export const UserDataContextProvider: React.FC<{
     desc: string;
     artist: string;
   }) {
-    console.log("Added to recent");
+    if (recentlyPlayed.some((song) => song.id === obj.id)) {
+      return;
+    }
     if (recentlyPlayed.length >= 6) {
       setRecentlyPlayed((prev) => {
-        prev.shift();
-        return [...prev, obj];
+        const arr = prev;
+        arr.shift();
+        return [...arr, obj];
       });
     } else {
       setRecentlyPlayed((prev) => [...prev, obj]);
     }
   }
+  console.log(recentlyPlayed);
 
   function addPlaylist(name: string, songId: string) {
     if (playlists.find((playlist) => playlist.name === name)) {
