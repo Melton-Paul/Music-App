@@ -1,27 +1,81 @@
 import React from "react";
 
 const userDataContext = React.createContext({
-  recents: [""],
+  recents: [
+    {
+      name: "",
+      id: "",
+      img: "",
+      desc: "",
+      artist: "",
+    },
+  ],
   playlists: [{}],
-  addRecentlyPlayed: (songId: string) => {},
+  playSong: (obj: {
+    name: string;
+    id: string;
+    img: string;
+    desc: string;
+    artist: string;
+  }) => {},
+  song: {
+    name: "",
+    id: "",
+    img: "",
+    desc: "",
+    artist: "",
+  },
 });
 
 export const UserDataContextProvider: React.FC<{
   children: React.ReactNode;
 }> = (props) => {
-  const [recentlyPlayed, setRecentlyPlayed] = React.useState<string[]>([]);
+  const [recentlyPlayed, setRecentlyPlayed] = React.useState<
+    {
+      name: string;
+      id: string;
+      img: string;
+      desc: string;
+      artist: string;
+    }[]
+  >([]);
   const [playlists, setPlaylists] = React.useState<
     { name: string; songs: string[] }[]
   >([]);
+  const [song, setSong] = React.useState({
+    name: "",
+    id: "",
+    img: "",
+    desc: "",
+    artist: "",
+  });
 
-  function addRecentlyPlayed(songId: string) {
+  function playSong(obj: {
+    name: string;
+    id: string;
+    img: string;
+    desc: string;
+    artist: string;
+  }) {
+    setSong(obj);
+    addRecentlyPlayed(obj);
+  }
+
+  function addRecentlyPlayed(obj: {
+    name: string;
+    id: string;
+    img: string;
+    desc: string;
+    artist: string;
+  }) {
+    console.log("Added to recent");
     if (recentlyPlayed.length >= 6) {
       setRecentlyPlayed((prev) => {
         prev.shift();
-        return [...prev, songId];
+        return [...prev, obj];
       });
     } else {
-      setRecentlyPlayed((prev) => [...prev, songId]);
+      setRecentlyPlayed((prev) => [...prev, obj]);
     }
   }
 
@@ -44,8 +98,9 @@ export const UserDataContextProvider: React.FC<{
   const contextValues = {
     recents: recentlyPlayed,
     playlists,
-    addRecentlyPlayed,
     addPlaylist,
+    playSong,
+    song,
   };
 
   return (
