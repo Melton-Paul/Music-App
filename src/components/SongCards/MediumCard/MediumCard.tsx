@@ -9,6 +9,7 @@ const MediumCard: React.FC<{
   desc: string;
   id: string;
   artist: string;
+  mp3: string;
 }> = (props) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const userDataCtx = React.useContext(userDataContext);

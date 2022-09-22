@@ -4,7 +4,14 @@ import MediumCard from "../SongCards/MediumCard/MediumCard";
 
 export default function SimilarSongs() {
   const [songs, setSongs] = React.useState<
-    { img: string; name: string; desc: string; id: string; artist: string }[]
+    {
+      img: string;
+      name: string;
+      desc: string;
+      id: string;
+      artist: string;
+      mp3: string;
+    }[]
   >([]);
 
   React.useEffect(() => {
@@ -27,6 +34,7 @@ export default function SimilarSongs() {
       id={song.id}
       artist={song.artist}
       key={song.id}
+      mp3={song.mp3}
     />
   ));
 

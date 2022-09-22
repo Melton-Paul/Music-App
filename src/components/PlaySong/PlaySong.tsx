@@ -11,6 +11,7 @@ export default function PlaySong() {
     artist: "",
     desc: "",
     id: "",
+    mp3: "",
   });
 
   // React.useEffect(() => {
@@ -38,6 +39,7 @@ export default function PlaySong() {
         id={songData.id}
         desc={songData.desc}
         artist={songData.artist}
+        mp3={songData.mp3}
       />
       <div className={styles["controls-container"]}>
         {/* <div className={styles.controls}>
@@ -55,7 +57,7 @@ export default function PlaySong() {
           </div>
           <span>3:00</span>
         </div>  */}
-        <audio controls></audio>
+        <audio controls src={songData.mp3} autoPlay></audio>
       </div>
     </section>
   );

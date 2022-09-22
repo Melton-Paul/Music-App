@@ -14,6 +14,7 @@ export default function MostRecent() {
       artist={song.artist}
       desc={song.desc}
       key={song.id}
+      mp3={song.mp3}
     />
   ));
 

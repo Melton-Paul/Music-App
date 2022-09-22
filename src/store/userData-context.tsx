@@ -7,6 +7,7 @@ interface song {
   img: string;
   desc: string;
   artist: string;
+  mp3: string;
 }
 
 const songIntitial: song = {
@@ -15,6 +16,7 @@ const songIntitial: song = {
   img: "",
   desc: "",
   artist: "",
+  mp3: "",
 };
 
 const userDataContext = React.createContext({
