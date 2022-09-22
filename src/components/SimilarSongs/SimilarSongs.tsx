@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./SimilarSongs.module.css";
 import MediumCard from "../SongCards/MediumCard/MediumCard";
-import { stringify } from "querystring";
 
 export default function SimilarSongs() {
   const [songs, setSongs] = React.useState<

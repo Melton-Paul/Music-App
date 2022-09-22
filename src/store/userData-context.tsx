@@ -1,3 +1,4 @@
+import authContext from "./auth-context";
 import React from "react";
 
 interface song {
@@ -23,6 +24,8 @@ const userDataContext = React.createContext({
   song: songIntitial,
 });
 
+let firstRender = true;
+
 export const UserDataContextProvider: React.FC<{
   children: React.ReactNode;
 }> = (props) => {
@@ -31,6 +34,7 @@ export const UserDataContextProvider: React.FC<{
     { name: string; songs: string[] }[]
   >([]);
   const [song, setSong] = React.useState(songIntitial);
+  const authCtx = React.useContext(authContext);
 
   function playSong(obj: song) {
     setSong(obj);
@@ -68,6 +72,35 @@ export const UserDataContextProvider: React.FC<{
       });
     }
   }
+
+  React.useEffect(() => {
+    if (!authCtx.userId || firstRender || recentlyPlayed.length === 0) {
+      return;
+    }
+
+    fetch(
+      `https://musicapp-ae1d2-default-rtdb.firebaseio.com/${authCtx.userId}.json`,
+      { method: "PUT", body: JSON.stringify(recentlyPlayed) }
+    );
+  }, [authCtx.userId, recentlyPlayed]);
+
+  React.useEffect(() => {
+    if (!authCtx.userId) {
+      return;
+    }
+    firstRender = false;
+
+    fetch(
+      `https://musicapp-ae1d2-default-rtdb.firebaseio.com/${authCtx.userId}.json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        for (let song in data) {
+          setRecentlyPlayed((prev) => [...prev, data[song]]);
+        }
+      });
+  }, [authCtx.userId]);
 
   const contextValues = {
     recents: recentlyPlayed,
