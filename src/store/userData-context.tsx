@@ -1,73 +1,43 @@
 import React from "react";
 
+interface song {
+  name: string;
+  id: string;
+  img: string;
+  desc: string;
+  artist: string;
+}
+
+const songIntitial: song = {
+  name: "",
+  id: "",
+  img: "",
+  desc: "",
+  artist: "",
+};
+
 const userDataContext = React.createContext({
-  recents: [
-    {
-      name: "",
-      id: "",
-      img: "",
-      desc: "",
-      artist: "",
-    },
-  ],
+  recents: [songIntitial],
   playlists: [{}],
-  playSong: (obj: {
-    name: string;
-    id: string;
-    img: string;
-    desc: string;
-    artist: string;
-  }) => {},
-  song: {
-    name: "",
-    id: "",
-    img: "",
-    desc: "",
-    artist: "",
-  },
+  playSong: (obj: song) => {},
+  song: songIntitial,
 });
 
 export const UserDataContextProvider: React.FC<{
   children: React.ReactNode;
 }> = (props) => {
-  const [recentlyPlayed, setRecentlyPlayed] = React.useState<
-    {
-      name: string;
-      id: string;
-      img: string;
-      desc: string;
-      artist: string;
-    }[]
-  >([]);
+  const [recentlyPlayed, setRecentlyPlayed] = React.useState<song[]>([]);
   const [playlists, setPlaylists] = React.useState<
     { name: string; songs: string[] }[]
   >([]);
-  const [song, setSong] = React.useState({
-    name: "",
-    id: "",
-    img: "",
-    desc: "",
-    artist: "",
-  });
+  const [song, setSong] = React.useState(songIntitial);
 
-  function playSong(obj: {
-    name: string;
-    id: string;
-    img: string;
-    desc: string;
-    artist: string;
-  }) {
+  function playSong(obj: song) {
     setSong(obj);
     addRecentlyPlayed(obj);
   }
 
-  function addRecentlyPlayed(obj: {
-    name: string;
-    id: string;
-    img: string;
-    desc: string;
-    artist: string;
-  }) {
+  function addRecentlyPlayed(obj: song) {
     if (recentlyPlayed.some((song) => song.id === obj.id)) {
       return;
     }
