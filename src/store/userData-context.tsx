@@ -45,6 +45,8 @@ export const UserDataContextProvider: React.FC<{
 
   function addRecentlyPlayed(obj: song) {
     if (recentlyPlayed.some((song) => song.id === obj.id)) {
+      setRecentlyPlayed((prev) => prev.filter((songs) => songs.id !== obj.id));
+      setRecentlyPlayed((prev) => [obj, ...prev]);
       return;
     }
     if (recentlyPlayed.length >= 6) {
@@ -54,7 +56,7 @@ export const UserDataContextProvider: React.FC<{
         return [...arr, obj];
       });
     } else {
-      setRecentlyPlayed((prev) => [...prev, obj]);
+      setRecentlyPlayed((prev) => [obj, ...prev]);
     }
   }
   console.log(recentlyPlayed);
