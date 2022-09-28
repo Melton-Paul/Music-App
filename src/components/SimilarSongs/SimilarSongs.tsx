@@ -22,6 +22,7 @@ export default function SimilarSongs() {
         for (let song in data) {
           newArr.push(data[song]);
         }
+        newArr.sort((a, b) => a.name.localeCompare(b.name));
         setSongs(newArr);
       });
   }, []);
