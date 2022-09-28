@@ -59,7 +59,6 @@ export const UserDataContextProvider: React.FC<{
       setRecentlyPlayed((prev) => [obj, ...prev]);
     }
   }
-  console.log(recentlyPlayed);
 
   function addPlaylist(name: string, songId: string) {
     if (playlists.find((playlist) => playlist.name === name)) {
@@ -76,6 +75,15 @@ export const UserDataContextProvider: React.FC<{
       });
     }
   }
+
+  React.useEffect(() => {
+    if (authCtx.isLoggedIn || firstRender) {
+      return;
+    }
+
+    setSong(songIntitial);
+    setRecentlyPlayed([]);
+  }, [authCtx.isLoggedIn]);
 
   React.useEffect(() => {
     if (!authCtx.userId || firstRender || recentlyPlayed.length === 0) {
@@ -101,10 +109,13 @@ export const UserDataContextProvider: React.FC<{
       .then((data) => {
         console.log(data);
         for (let song in data) {
+          if (recentlyPlayed.some((songs) => songs.id === data[song].id)) {
+            continue;
+          }
           setRecentlyPlayed((prev) => [...prev, data[song]]);
         }
       });
-  }, [authCtx.userId]);
+  }, [authCtx.userId, recentlyPlayed]);
 
   const contextValues = {
     recents: recentlyPlayed,
