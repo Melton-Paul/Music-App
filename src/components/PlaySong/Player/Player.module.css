@@ -12,9 +12,6 @@
   display: flex;
   width: 100%;
   align-items: center;
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
   z-index: 1;
   cursor: default;
 }
@@ -39,13 +36,15 @@
   border: 2px solid white;
   border-radius: 50%;
 }
+
+.control:hover {
+  transform: scale(1.05);
+}
+
 .play {
   max-width: 45px;
   width: 100%;
   cursor: pointer;
   padding: 1rem;
-}
-
-.control:hover {
-  transform: scale(1.05);
+  transform: translateX(1px);
 }

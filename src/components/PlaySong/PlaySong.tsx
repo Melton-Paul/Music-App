@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./PlaySong.module.scss";
 import userDataContext from "../../store/userData-context";
-import SmallCard from "../SongCards/SmallCard/SmallCard";
 import Player from "./Player/Player";
 
 export default function PlaySong() {

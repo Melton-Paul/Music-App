@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Player.module.css";
-import SmallCard from "../../SongCards/SmallCard/SmallCard";
 const pauseIcon = require("../../../images/pause.png");
 const playIcon = require("../../../images/play.png");
 
