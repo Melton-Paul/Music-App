@@ -9,7 +9,7 @@
   cursor: pointer;
   z-index: 1;
   transition: all 0.3s;
-  box-shadow: 0px 2px 7px 3px #cccc;
+  box-shadow: 0px 0px 4px 3px rgba(190, 189, 189, 0.8);
 }
 
 .small-card .text {
@@ -38,4 +38,7 @@
 }
 
 @media screen and (min-width: 768px) {
+  .small-card {
+    box-shadow: 0px 2px 7px 3px #cccc;
+  }
 }

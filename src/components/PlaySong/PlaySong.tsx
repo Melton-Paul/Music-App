@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./PlaySong.module.scss";
 import userDataContext from "../../store/userData-context";
 import SmallCard from "../SongCards/SmallCard/SmallCard";
+import Player from "./Player/Player";
 
 export default function PlaySong() {
   const userDataCtx = React.useContext(userDataContext);
@@ -14,51 +15,32 @@ export default function PlaySong() {
     mp3: "",
   });
 
-  // React.useEffect(() => {
-  //   if (!userDataCtx.song.id) {
-  //     return;
-  //   }
-  //   fetch(
-  //     `https://songs-34a41-default-rtdb.firebaseio.com/${userDataCtx.song.id}.json`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => setSongData(data));
-  // }, [userDataCtx.song.id]);
+  const [isPlaying, setIsPlaying] = React.useState(true);
+
+  const audioRef = React.useRef<HTMLAudioElement>(null);
 
   React.useEffect(() => {
     setSongData(userDataCtx.song);
+    setIsPlaying(true);
   }, [userDataCtx.song]);
 
-  console.log(songData);
+  React.useEffect(() => {
+    if (isPlaying) {
+      audioRef.current!.play();
+    } else {
+      audioRef.current!.pause();
+    }
+  }, [isPlaying]);
 
   return (
     <section className={styles.container}>
-      <SmallCard
-        img={songData.img}
-        name={songData.name}
-        id={songData.id}
-        desc={songData.desc}
-        artist={songData.artist}
-        mp3={songData.mp3}
+      <audio hidden controls src={songData.mp3} autoPlay ref={audioRef}></audio>
+      <Player
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        audioRef={audioRef}
+        songData={songData}
       />
-      <div className={styles["controls-container"]}>
-        {/* <div className={styles.controls}>
-          <img
-            onClick={togglePlaying}
-            className={styles.play}
-            src={isPlaying ? pauseIcon : playIcon}
-            alt={isPlaying ? "Pause Song" : "Play song"}
-          />
-        </div>
-        <div className={styles.progress_outer}>
-          <span>0:00</span>
-          <div className={styles["progress_bar-outer"]}>
-            <div className={styles["progress_bar-inner"]}></div>
-          </div>
-          <span>3:00</span>
-        </div>  */}
-        <audio controls src={songData.mp3} autoPlay></audio>
-      </div>
     </section>
   );
 }

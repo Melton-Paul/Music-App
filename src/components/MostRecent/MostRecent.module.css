@@ -2,6 +2,8 @@
   display: grid;
   gap: 1rem;
   transition: all.15s;
+  max-height: 323px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 800px) {

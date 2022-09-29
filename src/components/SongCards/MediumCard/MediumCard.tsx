@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./MediumCard.module.css";
 import userDataContext from "../../../store/userData-context";
-const play = require("../../../images/play.png");
+const play = require("../../../images/play-circle.png");
 
 const MediumCard: React.FC<{
   img: string;

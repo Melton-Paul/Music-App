@@ -21,8 +21,6 @@
 }
 @media screen and (min-width: 1200px) {
   .similarSongs {
-    /* grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: auto; */
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
