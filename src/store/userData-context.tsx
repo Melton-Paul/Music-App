@@ -35,6 +35,7 @@ export const UserDataContextProvider: React.FC<{
   const [playlists, setPlaylists] = React.useState<
     { name: string; songs: string[] }[]
   >([]);
+  const [curentPlaylist, setCurrentPlaylist] = React.useState<song[]>([]);
   const [song, setSong] = React.useState(songIntitial);
   const authCtx = React.useContext(authContext);
 

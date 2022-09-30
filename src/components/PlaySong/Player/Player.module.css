@@ -35,6 +35,9 @@
   padding: 0.25rem;
   border: 2px solid white;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .control:hover {
@@ -44,7 +47,25 @@
 .play {
   max-width: 45px;
   width: 100%;
-  cursor: pointer;
   padding: 1rem;
-  transform: translateX(1px);
+  cursor: pointer;
+}
+.progress_bar-outer {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 5px;
+  height: 10px;
+  background: rgb(241, 241, 241);
+  margin: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+.progress_bar-outer:hover {
+  transform: scale(1.05);
+}
+
+.progress_bar-inner {
+  background: rgb(14, 13, 13);
+  height: 100%;
+  transition: 0.3s all;
 }

@@ -14,10 +14,27 @@ const Player: React.FC<{
     desc: string;
     id: string;
     mp3: string;
+    progress?: number;
+    length?: number;
   };
 }> = ({ isPlaying, setIsPlaying, audioRef, songData }) => {
+  const clickRef = React.useRef<HTMLDivElement>(null);
+
   function togglePlaying() {
     setIsPlaying((prev) => !prev);
+  }
+
+  const progressStyle = {
+    width: songData.progress ? `${songData.progress}%` : "0%",
+  };
+
+  function checkWidth(e: any) {
+    const width = clickRef.current!.clientWidth;
+    const offset = e.nativeEvent.offsetX;
+
+    const progress = offset / width;
+
+    audioRef.current!.currentTime = progress * songData.length!;
   }
 
   return (
@@ -32,6 +49,16 @@ const Player: React.FC<{
           <h3 className={styles.name}>{songData.name}</h3>
           <h3 className={styles.artist}>{songData.artist}</h3>
         </div>
+      </div>
+      <div
+        className={styles["progress_bar-outer"]}
+        onClick={checkWidth}
+        ref={clickRef}
+      >
+        <div
+          className={styles["progress_bar-inner"]}
+          style={progressStyle}
+        ></div>
       </div>
       <div className={styles.control}>
         <img

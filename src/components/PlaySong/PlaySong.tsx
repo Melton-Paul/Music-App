@@ -5,6 +5,7 @@ import Player from "./Player/Player";
 
 export default function PlaySong() {
   const userDataCtx = React.useContext(userDataContext);
+  const [songs, setSongs] = React.useState();
   const [songData, setSongData] = React.useState({
     img: "",
     name: "",
@@ -20,6 +21,7 @@ export default function PlaySong() {
 
   React.useEffect(() => {
     setSongData(userDataCtx.song);
+
     setIsPlaying(true);
   }, [userDataCtx.song]);
 
@@ -31,9 +33,29 @@ export default function PlaySong() {
     }
   }, [isPlaying]);
 
+  function onPlaying() {
+    const duration = audioRef.current?.duration;
+    const currentTime = audioRef.current?.currentTime;
+
+    if (duration && currentTime) {
+      setSongData((prev) => ({
+        ...prev,
+        progress: ((currentTime / duration) * 100).toFixed(2),
+        length: duration,
+      }));
+    }
+  }
+
   return (
     <section className={styles.container}>
-      <audio hidden controls src={songData.mp3} autoPlay ref={audioRef}></audio>
+      <audio
+        hidden
+        controls
+        src={songData.mp3}
+        autoPlay
+        ref={audioRef}
+        onTimeUpdate={onPlaying}
+      ></audio>
       <Player
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
