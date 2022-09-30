@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./Player.module.css";
+import userDataContext from "../../../store/userData-context";
+import AddToPlaylist from "../../Playlists/AddPlaylist/AddToPlaylist";
 const pauseIcon = require("../../../images/pause.png");
 const playIcon = require("../../../images/play.png");
 
@@ -19,6 +21,8 @@ const Player: React.FC<{
   };
 }> = ({ isPlaying, setIsPlaying, audioRef, songData }) => {
   const clickRef = React.useRef<HTMLDivElement>(null);
+  const userDataCtx = React.useContext(userDataContext);
+  const [isAdding, setIsAdding] = React.useState(false);
 
   function togglePlaying() {
     setIsPlaying((prev) => !prev);
@@ -41,6 +45,9 @@ const Player: React.FC<{
     <article className={styles.player}>
       <div className={styles["songInfo-container"]}>
         <img
+          onClick={() => {
+            userDataCtx.addPlaylist(songData.name, songData);
+          }}
           className={styles.album}
           src={songData.img}
           alt={`${songData.name}'s song`}
@@ -48,6 +55,13 @@ const Player: React.FC<{
         <div className={styles.text}>
           <h3 className={styles.name}>{songData.name}</h3>
           <h3 className={styles.artist}>{songData.artist}</h3>
+          {isAdding ? (
+            <AddToPlaylist song={songData} setIsAdding={setIsAdding} />
+          ) : (
+            <button onClick={() => setIsAdding((prev) => !prev)}>
+              Add To Playlist
+            </button>
+          )}
         </div>
       </div>
       <div

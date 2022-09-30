@@ -5,6 +5,7 @@
   background: rgb(112, 111, 111);
   padding: 1rem 0;
   align-items: center;
+  position: relative;
 }
 
 .songInfo-container {

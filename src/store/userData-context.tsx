@@ -21,9 +21,10 @@ const songIntitial: song = {
 
 const userDataContext = React.createContext({
   recents: [songIntitial],
-  playlists: [{}],
+  playlists: [{ name: "", songs: [songIntitial] }],
   playSong: (obj: song) => {},
   song: songIntitial,
+  addPlaylist: (name: string, song: song) => {},
 });
 
 let firstRender = true;
@@ -32,8 +33,12 @@ export const UserDataContextProvider: React.FC<{
   children: React.ReactNode;
 }> = (props) => {
   const [recentlyPlayed, setRecentlyPlayed] = React.useState<song[]>([]);
+
   const [playlists, setPlaylists] = React.useState<
-    { name: string; songs: string[] }[]
+    {
+      name: string;
+      songs: song[];
+    }[]
   >([]);
   const [curentPlaylist, setCurrentPlaylist] = React.useState<song[]>([]);
   const [song, setSong] = React.useState(songIntitial);
@@ -61,18 +66,18 @@ export const UserDataContextProvider: React.FC<{
     }
   }
 
-  function addPlaylist(name: string, songId: string) {
+  function addPlaylist(name: string, song: song) {
     if (playlists.find((playlist) => playlist.name === name)) {
       setPlaylists((prev) => {
         return prev.map((playlist) => {
           return playlist.name === name
-            ? { ...playlist, songs: [...playlist.songs, songId] }
+            ? { ...playlist, songs: [...playlist.songs, song] }
             : playlist;
         });
       });
     } else {
       setPlaylists((prev) => {
-        return [...prev, { name: name, songs: [songId] }];
+        return [...prev, { name: name, songs: [song] }];
       });
     }
   }

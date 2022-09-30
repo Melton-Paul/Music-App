@@ -2,7 +2,7 @@
   display: grid;
   gap: 1rem;
   transition: all.15s;
-  max-height: 323px;
+  max-height: 350px;
   overflow: hidden;
 }
 
