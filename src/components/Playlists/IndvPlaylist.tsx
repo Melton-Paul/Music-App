@@ -14,6 +14,7 @@ const IndvPlaylist: React.FC<{
   }[];
   name: string;
 }> = ({ cover, songs, name }) => {
+  console.log(songs);
   return (
     <SmallCard
       img={cover}
@@ -23,6 +24,7 @@ const IndvPlaylist: React.FC<{
       desc={""}
       artist={""}
       mp3={""}
+      queue={songs}
     />
   );
 };

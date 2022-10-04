@@ -24,6 +24,7 @@ const MediumCard: React.FC<{
 
   function handleClick() {
     userDataCtx.playSong(props);
+    userDataCtx.setPlaylist([]);
   }
 
   return (

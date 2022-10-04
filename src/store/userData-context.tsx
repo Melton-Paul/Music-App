@@ -8,6 +8,7 @@ interface song {
   desc: string;
   artist: string;
   mp3: string;
+  queue?: song[];
 }
 
 const songIntitial: song = {
@@ -23,6 +24,8 @@ const userDataContext = React.createContext({
   recents: [songIntitial],
   playlists: [{ name: "", songs: [songIntitial] }],
   playSong: (obj: song) => {},
+  setPlaylist: (songs: song[]) => {},
+  currentPlaylist: [songIntitial],
   song: songIntitial,
   addPlaylist: (name: string, song: song) => {},
 });
@@ -40,13 +43,18 @@ export const UserDataContextProvider: React.FC<{
       songs: song[];
     }[]
   >([]);
-  const [curentPlaylist, setCurrentPlaylist] = React.useState<song[]>([]);
+  const [currentPlaylist, setCurrentPlaylist] = React.useState<song[]>([]);
   const [song, setSong] = React.useState(songIntitial);
   const authCtx = React.useContext(authContext);
 
   function playSong(obj: song) {
-    setSong(obj);
-    addRecentlyPlayed(obj);
+    if (obj.queue) {
+      setSong(obj.queue[0]);
+      addRecentlyPlayed(obj.queue[0]);
+    } else {
+      setSong(obj);
+      addRecentlyPlayed(obj);
+    }
   }
 
   function addRecentlyPlayed(obj: song) {
@@ -66,12 +74,18 @@ export const UserDataContextProvider: React.FC<{
     }
   }
 
+  function setPlaylist(songs: song[]) {
+    setCurrentPlaylist(songs);
+  }
+
   function addPlaylist(name: string, song: song) {
-    if (playlists.find((playlist) => playlist.name === name)) {
+    if (playlists.some((playlist) => playlist.name === name)) {
       setPlaylists((prev) => {
         return prev.map((playlist) => {
           return playlist.name === name
-            ? { ...playlist, songs: [...playlist.songs, song] }
+            ? playlist.songs.includes(song)
+              ? playlist
+              : { ...playlist, songs: [...playlist.songs, song] }
             : playlist;
         });
       });
@@ -125,8 +139,10 @@ export const UserDataContextProvider: React.FC<{
 
   const contextValues = {
     recents: recentlyPlayed,
+    setPlaylist,
     playlists,
     addPlaylist,
+    currentPlaylist,
     playSong,
     song,
   };

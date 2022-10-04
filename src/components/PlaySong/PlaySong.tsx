@@ -3,9 +3,18 @@ import styles from "./PlaySong.module.scss";
 import userDataContext from "../../store/userData-context";
 import Player from "./Player/Player";
 
+interface song {
+  img: string;
+  name: string;
+  artist: string;
+  desc: string;
+  id: string;
+  mp3: string;
+}
+
 export default function PlaySong() {
   const userDataCtx = React.useContext(userDataContext);
-  const [songs, setSongs] = React.useState();
+  const [songs, setSongs] = React.useState<song[]>([]);
   const [songData, setSongData] = React.useState({
     img: "",
     name: "",
@@ -14,16 +23,25 @@ export default function PlaySong() {
     id: "",
     mp3: "",
   });
-
+  const [songNum, setSongNum] = React.useState(0);
   const [isPlaying, setIsPlaying] = React.useState(true);
 
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
   React.useEffect(() => {
-    setSongData(userDataCtx.song);
+    if (userDataCtx.currentPlaylist) {
+      setSongs(userDataCtx.currentPlaylist);
+    }
 
-    setIsPlaying(true);
-  }, [userDataCtx.song]);
+    if (songs.length === 0) {
+      setSongData(userDataCtx.song);
+      setIsPlaying(true);
+    }
+
+    if (songs.length > 0) {
+      setSongData(songs[songNum]);
+    }
+  }, [userDataCtx.song, userDataCtx.currentPlaylist, songs, songNum]);
 
   React.useEffect(() => {
     if (isPlaying) {
@@ -44,7 +62,15 @@ export default function PlaySong() {
         length: duration,
       }));
     }
+    if (
+      audioRef.current!.duration === audioRef.current!.currentTime &&
+      songNum + 1 < songs.length
+    ) {
+      setSongNum((prev) => (prev += 1));
+    }
   }
+  console.log(songs.length);
+  console.log(songNum);
 
   return (
     <section className={styles.container}>

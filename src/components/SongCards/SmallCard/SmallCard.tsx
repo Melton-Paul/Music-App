@@ -10,10 +10,18 @@ const SmallCard: React.FC<{
   id: string;
   artist: string;
   mp3: string;
+  queue?: {
+    img: string;
+    name: string;
+    desc: string;
+    id: string;
+    artist: string;
+    mp3: string;
+  }[];
 }> = (props) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const userDataCtx = React.useContext(userDataContext);
-  const { name, img, desc, artist } = props;
+  const { name, img, queue } = props;
 
   function handleMouseLeave() {
     setIsHovered(false);
@@ -22,8 +30,15 @@ const SmallCard: React.FC<{
     setIsHovered(true);
   }
   function handleClick() {
-    userDataCtx.playSong(props);
+    if (queue) {
+      userDataCtx.setPlaylist(queue);
+    } else {
+      userDataCtx.playSong(props);
+      userDataCtx.setPlaylist([]);
+    }
   }
+
+  console.log(queue);
 
   return (
     <article

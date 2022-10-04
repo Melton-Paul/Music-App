@@ -1,6 +1,5 @@
 import React from "react";
 import userDataContext from "../../../store/userData-context";
-import Playlists from "../Playlists";
 import styles from "./AddToPlaylist.module.css";
 
 const AddToPlaylist: React.FC<{
