@@ -16,13 +16,24 @@ const AddToPlaylist: React.FC<{
 }> = ({ song, setIsAdding }) => {
   const userDataCtx = React.useContext(userDataContext);
   const [playlistName, setPlaylistName] = React.useState("");
+  const [isTouched, setIsTouched] = React.useState(false);
 
   function handleChange(e: any) {
     setPlaylistName(e.target.value);
+    setIsTouched(true);
   }
+  let error;
+
+  const playlistValid = playlistName.length > 0 && playlistName.length < 11;
+
+  if (playlistName.length < 1) error = "Please Input a name";
+  if (playlistName.length > 10) error = "Name can't be greater than 10 char.";
 
   function addPlaylist(e: any) {
     e.preventDefault();
+    if (!playlistValid) {
+      return;
+    }
     userDataCtx.addPlaylist(playlistName, song);
     setIsAdding(false);
   }
@@ -34,7 +45,10 @@ const AddToPlaylist: React.FC<{
           placeholder="Playlist Name"
           onChange={handleChange}
           value={playlistName}
+          min="1"
+          max="10"
         />
+        {!playlistValid && isTouched && <p>{error}</p>}
         <button>Add Playlist</button>
       </form>
     </div>
