@@ -36,12 +36,16 @@ export default function PlaySong() {
     if (songs.length === 0) {
       setSongData(userDataCtx.song);
       setIsPlaying(true);
+    } else {
+      setSongNum(0);
     }
+  }, [userDataCtx.song, userDataCtx.currentPlaylist, songs]);
 
+  React.useEffect(() => {
     if (songs.length > 0) {
       setSongData(songs[songNum]);
     }
-  }, [userDataCtx.song, userDataCtx.currentPlaylist, songs, songNum]);
+  }, [songNum, songs]);
 
   React.useEffect(() => {
     if (isPlaying) {
@@ -62,15 +66,18 @@ export default function PlaySong() {
         length: duration,
       }));
     }
-    if (
-      audioRef.current!.duration === audioRef.current!.currentTime &&
-      songNum + 1 < songs.length
-    ) {
-      setSongNum((prev) => (prev += 1));
+    if (audioRef.current!.duration === audioRef.current!.currentTime) {
+      if (songs.length > 0) {
+        if (songNum + 1 < songs.length) {
+          setSongNum((prev) => (prev += 1));
+        } else {
+          setIsPlaying(false);
+        }
+      } else {
+        setIsPlaying(false);
+      }
     }
   }
-  console.log(songs.length);
-  console.log(songNum);
 
   return (
     <section className={styles.container}>
