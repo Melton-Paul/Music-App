@@ -31,21 +31,13 @@ export default function PlaySong() {
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
   React.useEffect(() => {
-    if (userDataCtx.currentPlaylist.length > 0) {
-      if (
-        !isShuffling ||
-        JSON.stringify(songs) !== JSON.stringify(userDataCtx.currentPlaylist)
-      ) {
-        setSongs(userDataCtx.currentPlaylist);
-        resetPlayer();
-      }
-    }
+    setSongs(userDataCtx.currentPlaylist);
 
     if (userDataCtx.currentPlaylist.length === 0) {
       setSongData(userDataCtx.song);
-      resetPlayer();
     }
-  }, [userDataCtx.song, userDataCtx.currentPlaylist, songs, isShuffling]);
+    resetPlayer();
+  }, [userDataCtx.song, userDataCtx.currentPlaylist]);
 
   function resetPlayer() {
     setIsShuffling(false);
@@ -79,6 +71,7 @@ export default function PlaySong() {
 
   React.useEffect(() => {
     if (songs.length > 0) {
+      console.log("greater than 0");
       if (isShuffling) {
         setSongData(shuffledSongs[songNum]);
       } else {
