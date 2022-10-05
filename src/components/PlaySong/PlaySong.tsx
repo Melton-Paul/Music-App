@@ -30,8 +30,6 @@ export default function PlaySong() {
   const [isShuffling, setIsShuffling] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
-  console.log(userDataCtx.currentPlaylist);
-
   React.useEffect(() => {
     if (userDataCtx.currentPlaylist.length > 0) {
       if (
@@ -68,7 +66,6 @@ export default function PlaySong() {
     for (let i = 0; i < songs.length; i++) {
       let randomNum = Math.floor(Math.random() * unshuffled.length);
       const spliced = unshuffled.splice(randomNum, randomNum + 1);
-      console.log(spliced);
       shuffled.push(...spliced);
     }
 
@@ -111,10 +108,6 @@ export default function PlaySong() {
     }
     if (duration === currentTime) {
       if (shouldRepeat) {
-        setSongData((prev) => ({
-          ...prev,
-          progress: 0,
-        }));
         audioRef.current!.currentTime = 0;
         audioRef.current!.play();
       } else if (songs.length > 0) {

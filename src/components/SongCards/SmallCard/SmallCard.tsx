@@ -38,8 +38,6 @@ const SmallCard: React.FC<{
     }
   }
 
-  console.log(queue);
-
   return (
     <article
       className={styles["small-card"]}
