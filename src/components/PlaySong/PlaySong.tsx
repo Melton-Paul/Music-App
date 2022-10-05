@@ -39,19 +39,22 @@ export default function PlaySong() {
         JSON.stringify(songs) !== JSON.stringify(userDataCtx.currentPlaylist)
       ) {
         setSongs(userDataCtx.currentPlaylist);
-        setIsShuffling(false);
-        setIsPlaying(true);
+        resetPlayer();
       }
     }
 
     if (userDataCtx.currentPlaylist.length === 0) {
       setSongData(userDataCtx.song);
-      setIsPlaying(true);
-      setIsShuffling(false);
-    } else {
-      setSongNum(0);
+      resetPlayer();
     }
   }, [userDataCtx.song, userDataCtx.currentPlaylist, songs, isShuffling]);
+
+  function resetPlayer() {
+    setIsShuffling(false);
+    setIsPlaying(true);
+    setShouldRepeat(false);
+    setSongNum(0);
+  }
 
   function shuffle(boolean: boolean) {
     setIsShuffling((prev) => !prev);
@@ -114,7 +117,6 @@ export default function PlaySong() {
         }));
         audioRef.current!.currentTime = 0;
         audioRef.current!.play();
-        console.log(audioRef.current?.currentTime);
       } else if (songs.length > 0) {
         if (songNum + 1 < songs.length) {
           setSongNum((prev) => (prev += 1));
@@ -130,7 +132,6 @@ export default function PlaySong() {
   function changeSong(direction: string) {
     if (direction === "forward") {
       if (songNum < songs.length - 1) {
-        console.log("forward");
         setSongNum((prev) => (prev += 1));
       } else setSongNum(0);
     } else {
