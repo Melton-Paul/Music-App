@@ -15,6 +15,7 @@ interface song {
 export default function PlaySong() {
   const userDataCtx = React.useContext(userDataContext);
   const [songs, setSongs] = React.useState<song[]>([]);
+  const [shuffledSongs, setShuffledSongs] = React.useState<song[]>([]);
   const [songData, setSongData] = React.useState({
     img: "",
     name: "",
@@ -25,27 +26,66 @@ export default function PlaySong() {
   });
   const [songNum, setSongNum] = React.useState(0);
   const [isPlaying, setIsPlaying] = React.useState(true);
-
+  const [shouldRepeat, setShouldRepeat] = React.useState(false);
+  const [isShuffling, setIsShuffling] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
+  console.log(userDataCtx.currentPlaylist);
+
   React.useEffect(() => {
-    if (userDataCtx.currentPlaylist) {
-      setSongs(userDataCtx.currentPlaylist);
+    if (userDataCtx.currentPlaylist.length > 0) {
+      if (
+        !isShuffling ||
+        JSON.stringify(songs) !== JSON.stringify(userDataCtx.currentPlaylist)
+      ) {
+        setSongs(userDataCtx.currentPlaylist);
+        setIsShuffling(false);
+        setIsPlaying(true);
+      }
     }
 
-    if (songs.length === 0) {
+    if (userDataCtx.currentPlaylist.length === 0) {
       setSongData(userDataCtx.song);
       setIsPlaying(true);
+      setIsShuffling(false);
     } else {
       setSongNum(0);
     }
-  }, [userDataCtx.song, userDataCtx.currentPlaylist, songs]);
+  }, [userDataCtx.song, userDataCtx.currentPlaylist, songs, isShuffling]);
+
+  function shuffle(boolean: boolean) {
+    setIsShuffling((prev) => !prev);
+    if (boolean === false) {
+      setSongs(userDataCtx.currentPlaylist);
+      return;
+    }
+    const unshuffled = [...songs];
+    const shuffled: song[] = [];
+
+    for (let i = 0; i < songs.length; i++) {
+      let randomNum = Math.floor(Math.random() * unshuffled.length);
+      const spliced = unshuffled.splice(randomNum, randomNum + 1);
+      console.log(spliced);
+      shuffled.push(...spliced);
+    }
+
+    if (JSON.stringify(shuffled) === JSON.stringify(songs)) {
+      shuffle(true);
+      return;
+    }
+
+    setShuffledSongs(shuffled);
+  }
 
   React.useEffect(() => {
     if (songs.length > 0) {
-      setSongData(songs[songNum]);
+      if (isShuffling) {
+        setSongData(shuffledSongs[songNum]);
+      } else {
+        setSongData(songs[songNum]);
+      }
     }
-  }, [songNum, songs]);
+  }, [songNum, songs, shuffledSongs, isShuffling]);
 
   React.useEffect(() => {
     if (isPlaying) {
@@ -66,8 +106,16 @@ export default function PlaySong() {
         length: duration,
       }));
     }
-    if (audioRef.current!.duration === audioRef.current!.currentTime) {
-      if (songs.length > 0) {
+    if (duration === currentTime) {
+      if (shouldRepeat) {
+        setSongData((prev) => ({
+          ...prev,
+          progress: 0,
+        }));
+        audioRef.current!.currentTime = 0;
+        audioRef.current!.play();
+        console.log(audioRef.current?.currentTime);
+      } else if (songs.length > 0) {
         if (songNum + 1 < songs.length) {
           setSongNum((prev) => (prev += 1));
         } else {
@@ -77,6 +125,31 @@ export default function PlaySong() {
         setIsPlaying(false);
       }
     }
+  }
+
+  function changeSong(direction: string) {
+    if (direction === "forward") {
+      if (songNum < songs.length - 1) {
+        console.log("forward");
+        setSongNum((prev) => (prev += 1));
+      } else setSongNum(0);
+    } else {
+      if (songNum === 0) {
+        setSongData((prev) => ({
+          ...prev,
+          progress: 0,
+        }));
+        audioRef.current!.currentTime = 0;
+      } else {
+        setSongNum((prev) => (prev -= 1));
+      }
+    }
+    setIsPlaying(true);
+    setShouldRepeat(false);
+  }
+
+  function toggleRepeat() {
+    setShouldRepeat((prev) => !prev);
   }
 
   return (
@@ -94,6 +167,11 @@ export default function PlaySong() {
         setIsPlaying={setIsPlaying}
         audioRef={audioRef}
         songData={songData}
+        changeSong={changeSong}
+        toggleRepeat={toggleRepeat}
+        shouldRepeat={shouldRepeat}
+        shuffle={shuffle}
+        isShuffling={isShuffling}
       />
     </section>
   );

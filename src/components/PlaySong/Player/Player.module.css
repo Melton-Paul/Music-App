@@ -1,7 +1,7 @@
 .player {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   background: rgb(112, 111, 111);
   padding: 1rem 0;
   align-items: center;
@@ -9,17 +9,16 @@
 }
 
 .songInfo-container {
-  max-width: 300px;
   display: flex;
+  max-width: 150px;
+  justify-content: center;
   width: 100%;
   align-items: center;
   z-index: 1;
   cursor: default;
 }
 .album {
-  max-width: 80px;
-  width: 100%;
-  margin-right: 2rem;
+  display: none;
 }
 .text {
   color: white;
@@ -40,9 +39,25 @@
   justify-content: center;
   align-items: center;
 }
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+}
 
 .control:hover {
   transform: scale(1.05);
+}
+
+.control-container {
+  display: flex;
+  max-width: 300px;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  transform: translateY(10px);
 }
 
 .play {
@@ -69,4 +84,19 @@
   background: rgb(14, 13, 13);
   height: 100%;
   transition: 0.3s all;
+}
+
+@media screen and (min-width: 768px) {
+  .album {
+    max-width: 80px;
+    width: 100%;
+    margin-right: 2rem;
+    display: block;
+  }
+  .songInfo-container {
+    max-width: 300px;
+  }
+  .control-container {
+    max-width: 500px;
+  }
 }

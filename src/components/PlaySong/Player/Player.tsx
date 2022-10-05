@@ -4,8 +4,12 @@ import userDataContext from "../../../store/userData-context";
 import AddToPlaylist from "../../Playlists/AddPlaylist/AddToPlaylist";
 const pauseIcon = require("../../../images/pause.png");
 const playIcon = require("../../../images/play.png");
+const forwardIcon = require("../../../images/fast-forward.png");
+const backIcon = require("../../../images/rewind.png");
+const shuffleIcon = require("../../../images/shuffle.png");
+const repeatIcon = require("../../../images/repeat.png");
 
-const Player: React.FC<{
+interface PlayerProps {
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   audioRef: React.RefObject<HTMLAudioElement>;
@@ -19,7 +23,24 @@ const Player: React.FC<{
     progress?: number;
     length?: number;
   };
-}> = ({ isPlaying, setIsPlaying, audioRef, songData }) => {
+  changeSong: (direction: string) => void;
+  toggleRepeat: () => void;
+  shouldRepeat: boolean;
+  shuffle: (boolean: boolean) => void;
+  isShuffling: boolean;
+}
+
+const Player: React.FC<PlayerProps> = ({
+  isPlaying,
+  setIsPlaying,
+  audioRef,
+  songData,
+  changeSong,
+  toggleRepeat,
+  shouldRepeat,
+  shuffle,
+  isShuffling,
+}) => {
   const clickRef = React.useRef<HTMLDivElement>(null);
   const userDataCtx = React.useContext(userDataContext);
   const [isAdding, setIsAdding] = React.useState(false);
@@ -32,6 +53,15 @@ const Player: React.FC<{
     width: songData.progress ? `${songData.progress}%` : "0%",
   };
 
+  const repeatStyle = {
+    boxShadow: shouldRepeat ? "0px 0px 3px #ccc" : "none",
+    borderRadius: "100%",
+  };
+  const shuffleStyle = {
+    boxShadow: isShuffling ? "0px 0px 3px #ccc" : "none",
+    borderRadius: "100%",
+  };
+
   function checkWidth(e: any) {
     const width = clickRef.current!.clientWidth;
     const offset = e.nativeEvent.offsetX;
@@ -39,6 +69,9 @@ const Player: React.FC<{
     const progress = offset / width;
 
     audioRef.current!.currentTime = progress * songData.length!;
+  }
+  function shufflePlaylist() {
+    shuffle(!isShuffling);
   }
 
   return (
@@ -64,23 +97,61 @@ const Player: React.FC<{
           )}
         </div>
       </div>
-      <div
-        className={styles["progress_bar-outer"]}
-        onClick={checkWidth}
-        ref={clickRef}
-      >
+      <div className={styles["control-container"]}>
+        <div className={styles.controls}>
+          <>
+            <img
+              className={styles.play}
+              src={repeatIcon}
+              alt="Repeat current song"
+              onClick={toggleRepeat}
+              style={repeatStyle}
+            />
+            <img
+              className={styles.play}
+              src={backIcon}
+              alt="Go to previous song"
+              onClick={() => {
+                changeSong("back");
+              }}
+            />
+          </>
+          <div className={styles.control}>
+            <img
+              onClick={togglePlaying}
+              className={styles.play}
+              src={isPlaying ? pauseIcon : playIcon}
+              alt={isPlaying ? "Pause Song" : "Play song"}
+            />
+          </div>
+          <>
+            <img
+              className={styles.play}
+              src={forwardIcon}
+              alt="Go to next song"
+              onClick={() => {
+                changeSong("forward");
+              }}
+            />
+            <img
+              className={styles.play}
+              src={shuffleIcon}
+              alt="Shuffle playlist"
+              onClick={shufflePlaylist}
+              style={shuffleStyle}
+            />
+          </>
+        </div>
         <div
-          className={styles["progress_bar-inner"]}
-          style={progressStyle}
-        ></div>
-      </div>
-      <div className={styles.control}>
-        <img
-          onClick={togglePlaying}
-          className={styles.play}
-          src={isPlaying ? pauseIcon : playIcon}
-          alt={isPlaying ? "Pause Song" : "Play song"}
-        />
+          className={styles["progress_bar-outer"]}
+          onClick={checkWidth}
+          ref={clickRef}
+        >
+          <div
+            className={styles["progress_bar-inner"]}
+            style={progressStyle}
+          ></div>
+        </div>
       </div>
     </article>
   );
