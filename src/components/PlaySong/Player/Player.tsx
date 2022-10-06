@@ -46,7 +46,13 @@ const Player: React.FC<PlayerProps> = ({
   const volumeRef = React.useRef<HTMLDivElement>(null);
   const userDataCtx = React.useContext(userDataContext);
   const [isAdding, setIsAdding] = React.useState(false);
-  const [volume, setVolume] = React.useState(0.8);
+  const [volume, setVolume] = React.useState(
+    JSON.parse(localStorage.getItem("volume") || "1")
+  );
+
+  React.useEffect(() => {
+    localStorage.setItem("volume", JSON.stringify(volume));
+  }, [volume]);
 
   function togglePlaying() {
     setIsPlaying((prev) => !prev);

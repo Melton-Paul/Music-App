@@ -145,8 +145,6 @@ export default function PlaySong() {
     setShouldRepeat((prev) => !prev);
   }
 
-  console.log(audioRef.current?.volume);
-
   return (
     <section className={styles.container}>
       <audio
