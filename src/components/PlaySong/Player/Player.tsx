@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Player.module.css";
 import userDataContext from "../../../store/userData-context";
 import AddToPlaylist from "../../Playlists/AddPlaylist/AddToPlaylist";
+import Volume from "./Volume/Volume";
 const pauseIcon = require("../../../images/pause.png");
 const playIcon = require("../../../images/play.png");
 const forwardIcon = require("../../../images/fast-forward.png");
@@ -41,9 +42,11 @@ const Player: React.FC<PlayerProps> = ({
   shuffle,
   isShuffling,
 }) => {
-  const clickRef = React.useRef<HTMLDivElement>(null);
+  const progressRef = React.useRef<HTMLDivElement>(null);
+  const volumeRef = React.useRef<HTMLDivElement>(null);
   const userDataCtx = React.useContext(userDataContext);
   const [isAdding, setIsAdding] = React.useState(false);
+  const [volume, setVolume] = React.useState(0.8);
 
   function togglePlaying() {
     setIsPlaying((prev) => !prev);
@@ -63,13 +66,22 @@ const Player: React.FC<PlayerProps> = ({
   };
 
   function checkWidth(e: any) {
-    const width = clickRef.current!.clientWidth;
+    let width;
+    if (e.target.id === "progress" || e.target.id === "progress1") {
+      width = progressRef.current!.clientWidth;
+    } else {
+      width = volumeRef.current!.clientWidth;
+    }
     const offset = e.nativeEvent.offsetX;
-
     const progress = offset / width;
-
-    audioRef.current!.currentTime = progress * songData.length!;
+    if (e.target.id === "progress" || e.target.id === "progress1") {
+      audioRef.current!.currentTime = progress * songData.length!;
+    } else {
+      audioRef.current!.volume = progress;
+      setVolume(audioRef.current!.volume);
+    }
   }
+
   function shufflePlaylist() {
     shuffle(!isShuffling);
   }
@@ -98,60 +110,70 @@ const Player: React.FC<PlayerProps> = ({
         </div>
       </div>
       <div className={styles["control-container"]}>
-        <div className={styles.controls}>
-          <>
-            <img
-              className={styles.play}
-              src={repeatIcon}
-              alt="Repeat current song"
-              onClick={toggleRepeat}
-              style={repeatStyle}
-            />
-            <img
-              className={styles.play}
-              src={backIcon}
-              alt="Go to previous song"
-              onClick={() => {
-                changeSong("back");
-              }}
-            />
-          </>
-          <div className={styles.control}>
-            <img
-              onClick={togglePlaying}
-              className={styles.play}
-              src={isPlaying ? pauseIcon : playIcon}
-              alt={isPlaying ? "Pause Song" : "Play song"}
-            />
+        <div className={styles["control-group"]}>
+          <div className={styles.controls}>
+            <>
+              <img
+                className={styles.play}
+                src={repeatIcon}
+                alt="Repeat current song"
+                onClick={toggleRepeat}
+                style={repeatStyle}
+              />
+              <img
+                className={styles.play}
+                src={backIcon}
+                alt="Go to previous song"
+                onClick={() => {
+                  changeSong("back");
+                }}
+              />
+            </>
+            <div className={styles.control}>
+              <img
+                onClick={togglePlaying}
+                className={styles.play}
+                src={isPlaying ? pauseIcon : playIcon}
+                alt={isPlaying ? "Pause Song" : "Play song"}
+              />
+            </div>
+            <>
+              <img
+                className={styles.play}
+                src={forwardIcon}
+                alt="Go to next song"
+                onClick={() => {
+                  changeSong("forward");
+                }}
+              />
+              <img
+                className={styles.play}
+                src={shuffleIcon}
+                alt="Shuffle playlist"
+                onClick={shufflePlaylist}
+                style={shuffleStyle}
+              />
+            </>
           </div>
-          <>
-            <img
-              className={styles.play}
-              src={forwardIcon}
-              alt="Go to next song"
-              onClick={() => {
-                changeSong("forward");
-              }}
-            />
-            <img
-              className={styles.play}
-              src={shuffleIcon}
-              alt="Shuffle playlist"
-              onClick={shufflePlaylist}
-              style={shuffleStyle}
-            />
-          </>
-        </div>
-        <div
-          className={styles["progress_bar-outer"]}
-          onClick={checkWidth}
-          ref={clickRef}
-        >
           <div
-            className={styles["progress_bar-inner"]}
-            style={progressStyle}
-          ></div>
+            className={styles["progress_bar-outer"]}
+            onClick={checkWidth}
+            ref={progressRef}
+            id="progress"
+          >
+            <div
+              className={styles["progress_bar-inner"]}
+              style={progressStyle}
+              id="progress1"
+            ></div>
+          </div>
         </div>
+        <Volume
+          checkWidth={checkWidth}
+          audioRef={audioRef}
+          volume={volume}
+          volumeRef={volumeRef}
+        />
       </div>
     </article>
   );

@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   background: rgb(112, 111, 111);
-  padding: 1rem 0;
+  padding: 1rem;
   align-items: center;
   position: relative;
 }
@@ -56,8 +56,15 @@
   max-width: 300px;
   width: 100%;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   transform: translateY(10px);
+}
+.control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
 }
 
 .play {
@@ -98,5 +105,9 @@
   }
   .control-container {
     max-width: 500px;
+    flex-direction: row;
+  }
+  .control-group {
+    width: 100%;
   }
 }

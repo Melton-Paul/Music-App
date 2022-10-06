@@ -1,0 +1,35 @@
+.volume-changer {
+  display: flex;
+  max-width: 150px;
+  width: 100%;
+  margin-left: 2rem;
+  justify-content: center;
+}
+.volume-changer img {
+  max-width: 30px;
+  cursor: pointer;
+}
+
+.progress_bar-outer {
+  max-width: 150px;
+  width: 100%;
+  border-radius: 5px;
+  height: 10px;
+  background: rgb(241, 241, 241);
+  margin: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+.progress_bar-outer:hover {
+  transform: scale(1.05);
+}
+.progress_bar-inner {
+  background: rgb(14, 13, 13);
+  height: 100%;
+  transition: 0.3s all;
+}
+@media screen and (min-width: 768px) {
+  .volume-changer {
+    max-width: 170px;
+  }
+}
