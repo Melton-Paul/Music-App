@@ -1,11 +1,12 @@
 .player {
+  max-width: 1200px;
   width: 100%;
   display: flex;
-  justify-content: center;
-  background: rgb(112, 111, 111);
   padding: 1rem;
+  justify-content: space-evenly;
   align-items: center;
   position: relative;
+  margin: 0 auto;
 }
 
 .songInfo-container {
@@ -73,6 +74,12 @@
   padding: 1rem;
   cursor: pointer;
 }
+.progres_bar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
 .progress_bar-outer {
   max-width: 500px;
   width: 100%;

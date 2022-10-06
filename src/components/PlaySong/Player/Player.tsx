@@ -92,6 +92,16 @@ const Player: React.FC<PlayerProps> = ({
     shuffle(!isShuffling);
   }
 
+  function convertTime(sec: number) {
+    const minutes = +(sec / 60).toFixed(2);
+
+    const min = Math.floor(Math.abs(minutes));
+    const seconds = Math.floor((Math.abs(minutes) * 60) % 60);
+    return (
+      (min < 10 ? "0" : "") + min + ":" + (seconds < 10 ? "0" : "") + seconds
+    );
+  }
+
   return (
     <article className={styles.player}>
       <div className={styles["songInfo-container"]}>
@@ -161,17 +171,21 @@ const Player: React.FC<PlayerProps> = ({
               />
             </>
           </div>
-          <div
-            className={styles["progress_bar-outer"]}
-            onClick={checkWidth}
-            ref={progressRef}
-            id="progress"
-          >
+          <div className={styles.progres_bar}>
+            <p>{convertTime(songData.progress!)}</p>
             <div
-              className={styles["progress_bar-inner"]}
-              style={progressStyle}
-              id="progress1"
-            ></div>
+              className={styles["progress_bar-outer"]}
+              onClick={checkWidth}
+              ref={progressRef}
+              id="progress"
+            >
+              <div
+                className={styles["progress_bar-inner"]}
+                style={progressStyle}
+                id="progress1"
+              ></div>
+            </div>{" "}
+            <p>{convertTime(songData.length!)}</p>
           </div>
         </div>
         <Volume
