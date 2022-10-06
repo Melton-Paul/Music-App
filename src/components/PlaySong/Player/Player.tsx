@@ -93,12 +93,14 @@ const Player: React.FC<PlayerProps> = ({
   }
 
   function convertTime(sec: number) {
-    const minutes = +(sec / 60).toFixed(2);
-
-    const min = Math.floor(Math.abs(minutes));
-    const seconds = Math.floor((Math.abs(minutes) * 60) % 60);
+    const minutes = Math.floor(sec / 60);
+    const seconds = Math.floor(sec % 60);
     return (
-      (min < 10 ? "0" : "") + min + ":" + (seconds < 10 ? "0" : "") + seconds
+      (minutes < 10 ? "0" : "") +
+      minutes +
+      ":" +
+      (seconds < 10 ? "0" : "") +
+      seconds
     );
   }
 
@@ -172,7 +174,7 @@ const Player: React.FC<PlayerProps> = ({
             </>
           </div>
           <div className={styles.progres_bar}>
-            <p>{convertTime(songData.progress!)}</p>
+            <p>{convertTime(songData.progress! || 0)}</p>
             <div
               className={styles["progress_bar-outer"]}
               onClick={checkWidth}
@@ -185,7 +187,7 @@ const Player: React.FC<PlayerProps> = ({
                 id="progress1"
               ></div>
             </div>{" "}
-            <p>{convertTime(songData.length!)}</p>
+            <p>{convertTime(songData.length! || 0)}</p>
           </div>
         </div>
         <Volume
