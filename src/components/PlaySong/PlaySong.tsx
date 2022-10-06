@@ -36,6 +36,7 @@ export default function PlaySong() {
     if (userDataCtx.currentPlaylist.length === 0) {
       setSongData(userDataCtx.song);
     }
+
     resetPlayer();
   }, [userDataCtx.song, userDataCtx.currentPlaylist]);
 

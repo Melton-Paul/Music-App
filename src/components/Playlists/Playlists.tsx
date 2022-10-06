@@ -13,6 +13,7 @@ export default function Playlists() {
         name={playlist.name}
         cover={playlist.songs[0].img}
         songs={playlist.songs}
+        key={playlist.name}
       />
     );
   });

@@ -1,5 +1,6 @@
 import authContext from "./auth-context";
 import React from "react";
+import Playlists from "../components/Playlists/Playlists";
 
 interface song {
   name: string;
@@ -112,9 +113,12 @@ export const UserDataContextProvider: React.FC<{
 
     fetch(
       `https://musicapp-ae1d2-default-rtdb.firebaseio.com/${authCtx.userId}.json`,
-      { method: "PUT", body: JSON.stringify(recentlyPlayed) }
+      {
+        method: "PUT",
+        body: JSON.stringify({ recents: recentlyPlayed, playlists: playlists }),
+      }
     );
-  }, [authCtx.userId, recentlyPlayed]);
+  }, [authCtx.userId, recentlyPlayed, playlists]);
 
   React.useEffect(() => {
     if (!authCtx.userId) {
@@ -128,14 +132,27 @@ export const UserDataContextProvider: React.FC<{
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        for (let song in data) {
-          if (recentlyPlayed.some((songs) => songs.id === data[song].id)) {
+        for (let song in data.recents) {
+          console.log(data.recents[song]);
+          if (
+            recentlyPlayed.some((songs) => songs.id === data.recents[song].id)
+          ) {
             continue;
           }
-          setRecentlyPlayed((prev) => [...prev, data[song]]);
+          setRecentlyPlayed((prev) => [...prev, data.recents[song]]);
+        }
+        for (let playlist in data.playlists) {
+          if (
+            playlists.some(
+              (list) => list.name === data.playlists[playlist].name
+            )
+          ) {
+            continue;
+          }
+          setPlaylists((prev) => [...prev, data.playlists[playlist]]);
         }
       });
-  }, [authCtx.userId, recentlyPlayed]);
+  }, [authCtx.userId, recentlyPlayed, playlists]);
 
   const contextValues = {
     recents: recentlyPlayed,
