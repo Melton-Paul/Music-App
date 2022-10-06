@@ -30,6 +30,8 @@ export default function PlaySong() {
   const [isShuffling, setIsShuffling] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
+  console.log(userDataCtx.currentPlaylist);
+
   React.useEffect(() => {
     setSongs(userDataCtx.currentPlaylist);
 
@@ -48,6 +50,9 @@ export default function PlaySong() {
   }
 
   function shuffle(boolean: boolean) {
+    if (userDataCtx.currentPlaylist.length <= 1) {
+      return;
+    }
     setIsShuffling((prev) => !prev);
     if (boolean === false) {
       setSongs(userDataCtx.currentPlaylist);
