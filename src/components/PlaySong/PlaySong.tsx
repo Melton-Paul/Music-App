@@ -33,9 +33,9 @@ export default function PlaySong() {
   console.log(userDataCtx.currentPlaylist);
 
   React.useEffect(() => {
-    setSongs(userDataCtx.currentPlaylist);
+    setSongs(userDataCtx.currentPlaylist.songs);
 
-    if (userDataCtx.currentPlaylist.length === 0) {
+    if (userDataCtx.currentPlaylist.songs.length === 0) {
       setSongData(userDataCtx.song);
     }
 
@@ -50,12 +50,12 @@ export default function PlaySong() {
   }
 
   function shuffle(boolean: boolean) {
-    if (userDataCtx.currentPlaylist.length <= 1) {
+    if (userDataCtx.currentPlaylist.songs.length <= 1) {
       return;
     }
     setIsShuffling((prev) => !prev);
     if (boolean === false) {
-      setSongs(userDataCtx.currentPlaylist);
+      setSongs(userDataCtx.currentPlaylist.songs);
       return;
     }
     const unshuffled = [...songs];

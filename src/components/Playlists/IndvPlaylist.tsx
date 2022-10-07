@@ -13,19 +13,23 @@ const IndvPlaylist: React.FC<{
     mp3: string;
   }[];
   name: string;
-}> = ({ cover, songs, name }) => {
+  removePlaylist: () => void;
+}> = ({ cover, songs, name, removePlaylist }) => {
   console.log(songs);
   return (
-    <SmallCard
-      img={cover}
-      name={name}
-      id={name}
-      key={name}
-      desc={""}
-      artist={""}
-      mp3={""}
-      queue={songs}
-    />
+    <>
+      <SmallCard
+        img={cover}
+        name={name}
+        id={name}
+        key={name}
+        desc={""}
+        artist={""}
+        mp3={""}
+        queue={songs}
+      />
+      <button onClick={removePlaylist}>Remove</button>
+    </>
   );
 };
 

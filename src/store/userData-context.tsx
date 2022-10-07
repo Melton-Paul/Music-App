@@ -1,6 +1,5 @@
 import authContext from "./auth-context";
 import React from "react";
-import Playlists from "../components/Playlists/Playlists";
 
 interface song {
   name: string;
@@ -25,10 +24,11 @@ const userDataContext = React.createContext({
   recents: [songIntitial],
   playlists: [{ name: "", songs: [songIntitial] }],
   playSong: (obj: song) => {},
-  setPlaylist: (songs: song[]) => {},
-  currentPlaylist: [songIntitial],
+  setPlaylist: (mame: string, songs: song[]) => {},
+  currentPlaylist: { name: "", songs: [songIntitial] },
   song: songIntitial,
   addPlaylist: (name: string, song: song) => {},
+  removePlaylist: (name: string) => {},
 });
 
 let firstRender = true;
@@ -44,7 +44,10 @@ export const UserDataContextProvider: React.FC<{
       songs: song[];
     }[]
   >([]);
-  const [currentPlaylist, setCurrentPlaylist] = React.useState<song[]>([]);
+  const [currentPlaylist, setCurrentPlaylist] = React.useState<{
+    name: string;
+    songs: song[];
+  }>({ name: "", songs: [] });
   const [song, setSong] = React.useState(songIntitial);
   const authCtx = React.useContext(authContext);
 
@@ -75,8 +78,8 @@ export const UserDataContextProvider: React.FC<{
     }
   }
 
-  function setPlaylist(songs: song[]) {
-    setCurrentPlaylist(songs);
+  function setPlaylist(name: string, songs: song[]) {
+    setCurrentPlaylist({ name, songs });
   }
 
   function addPlaylist(name: string, song: song) {
@@ -95,6 +98,12 @@ export const UserDataContextProvider: React.FC<{
         return [...prev, { name: name, songs: [song] }];
       });
     }
+  }
+
+  function removePlaylist(name: string) {
+    setPlaylists((prev) => {
+      return prev.filter((playlist) => playlist.name !== name);
+    });
   }
 
   React.useEffect(() => {
@@ -121,7 +130,7 @@ export const UserDataContextProvider: React.FC<{
   }, [authCtx.userId, recentlyPlayed, playlists]);
 
   React.useEffect(() => {
-    if (!authCtx.userId) {
+    if (!authCtx.userId || !firstRender) {
       return;
     }
     firstRender = false;
@@ -133,7 +142,6 @@ export const UserDataContextProvider: React.FC<{
       .then((data) => {
         console.log(data);
         for (let song in data.recents) {
-          console.log(data.recents[song]);
           if (
             recentlyPlayed.some((songs) => songs.id === data.recents[song].id)
           ) {
@@ -159,6 +167,7 @@ export const UserDataContextProvider: React.FC<{
     setPlaylist,
     playlists,
     addPlaylist,
+    removePlaylist,
     currentPlaylist,
     playSong,
     song,

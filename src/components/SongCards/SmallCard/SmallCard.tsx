@@ -31,10 +31,10 @@ const SmallCard: React.FC<{
   }
   function handleClick() {
     if (queue) {
-      userDataCtx.setPlaylist(queue);
+      userDataCtx.setPlaylist(name, queue);
     } else {
       userDataCtx.playSong(props);
-      userDataCtx.setPlaylist([]);
+      userDataCtx.setPlaylist("", []);
     }
   }
 

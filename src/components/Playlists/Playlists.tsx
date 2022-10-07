@@ -14,6 +14,7 @@ export default function Playlists() {
         cover={playlist.songs[0].img}
         songs={playlist.songs}
         key={playlist.name}
+        removePlaylist={userDataCtx.removePlaylist.bind(null, playlist.name)}
       />
     );
   });

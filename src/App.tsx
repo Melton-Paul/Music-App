@@ -20,9 +20,8 @@ function App() {
           <Route path="*" element={<MainPage />} />
         </Routes>
       </main>
-      {(userDataCtx.song.id || userDataCtx.currentPlaylist.length > 0) && (
-        <PlaySong />
-      )}
+      {(userDataCtx.song.id ||
+        userDataCtx.currentPlaylist.songs.length > 0) && <PlaySong />}
     </div>
   );
 }
