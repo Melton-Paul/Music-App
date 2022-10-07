@@ -1,6 +1,6 @@
 import React from "react";
-import SimilarSongs from "../SimilarSongs/SimilarSongs";
 import SmallCard from "../SongCards/SmallCard/SmallCard";
+import DeleteModal from "../DeleteModal/DeleteModal";
 
 const IndvPlaylist: React.FC<{
   cover: string;
@@ -15,21 +15,44 @@ const IndvPlaylist: React.FC<{
   name: string;
   removePlaylist: () => void;
 }> = ({ cover, songs, name, removePlaylist }) => {
-  console.log(songs);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [askDelete, setAskDelete] = React.useState(false);
+
+  function handleEnter() {
+    setIsHovered(true);
+  }
+  function handleLeave() {
+    setIsHovered(false);
+  }
+
+  function toggleDelete() {
+    setAskDelete((prev) => !prev);
+  }
+
   return (
-    <>
-      <SmallCard
-        img={cover}
-        name={name}
-        id={name}
-        key={name}
-        desc={""}
-        artist={""}
-        mp3={""}
-        queue={songs}
-      />
-      <button onClick={removePlaylist}>Remove</button>
-    </>
+    <div onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+      <div style={{ position: "relative" }}>
+        {askDelete && (
+          <DeleteModal
+            deleteFunction={removePlaylist}
+            cancelFunction={toggleDelete}
+          />
+        )}
+        <SmallCard
+          img={cover}
+          name={name}
+          id={name}
+          key={name}
+          desc={""}
+          artist={""}
+          mp3={""}
+          queue={songs}
+        />
+      </div>
+      {isHovered && !askDelete && (
+        <button onClick={toggleDelete}>Remove</button>
+      )}
+    </div>
   );
 };
 

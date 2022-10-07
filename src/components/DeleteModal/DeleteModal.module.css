@@ -1,0 +1,29 @@
+.background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.modal {
+  position: absolute;
+  z-index: 5;
+  top: 10%;
+  right: 50%;
+  transform: translateX(50%);
+  color: white;
+  text-align: center;
+}
+.modal-title {
+  font-size: 1.2rem;
+}
+.modal-warning {
+  font-size: 1.1rem;
+}
+
+.modal button {
+  margin: 0 1rem;
+}
