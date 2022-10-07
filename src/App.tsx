@@ -6,6 +6,7 @@ import authContext from "./store/auth-context";
 import { Routes, Route } from "react-router-dom";
 import PlaySong from "./components/PlaySong/PlaySong";
 import userDataContext from "./store/userData-context";
+import ShowPlaylist from "./components/Playlists/ShowPlaylist/ShowPlaylist";
 
 function App() {
   const authCtx = React.useContext(authContext);
@@ -15,6 +16,9 @@ function App() {
       <Navbar />
       <main>
         <Routes>
+          {userDataCtx.currentPlaylist.name !== "" && (
+            <Route path="/playlist" element={<ShowPlaylist />} />
+          )}
           <Route path="/" element={<MainPage />} />
           {!authCtx.isLoggedIn && <Route path="/login" element={<Auth />} />}
           <Route path="*" element={<MainPage />} />

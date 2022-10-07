@@ -1,6 +1,7 @@
 import React from "react";
 import SmallCard from "../SongCards/SmallCard/SmallCard";
 import DeleteModal from "../DeleteModal/DeleteModal";
+import { useNavigate } from "react-router";
 
 const IndvPlaylist: React.FC<{
   cover: string;
@@ -17,6 +18,7 @@ const IndvPlaylist: React.FC<{
 }> = ({ cover, songs, name, removePlaylist }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [askDelete, setAskDelete] = React.useState(false);
+  const navigate = useNavigate();
 
   function handleEnter() {
     setIsHovered(true);
@@ -28,10 +30,13 @@ const IndvPlaylist: React.FC<{
   function toggleDelete() {
     setAskDelete((prev) => !prev);
   }
+  function handleClick() {
+    navigate("/playlist");
+  }
 
   return (
     <div onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative" }} onClick={handleClick}>
         {askDelete && (
           <DeleteModal
             deleteFunction={removePlaylist}
