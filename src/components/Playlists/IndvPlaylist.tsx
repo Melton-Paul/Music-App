@@ -19,11 +19,15 @@ const IndvPlaylist: React.FC<{
   const [isHovered, setIsHovered] = React.useState(false);
   const [askDelete, setAskDelete] = React.useState(false);
   const navigate = useNavigate();
+  let timer: any;
 
   function handleEnter() {
-    setIsHovered(true);
+    timer = setTimeout(() => {
+      setIsHovered(true);
+    }, 400);
   }
   function handleLeave() {
+    clearTimeout(timer);
     setIsHovered(false);
   }
 
@@ -36,7 +40,13 @@ const IndvPlaylist: React.FC<{
 
   return (
     <div onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-      <div style={{ position: "relative" }} onClick={handleClick}>
+      <div
+        style={{ position: "relative" }}
+        onClick={() => {
+          if (askDelete) return;
+          handleClick();
+        }}
+      >
         {askDelete && (
           <DeleteModal
             deleteFunction={removePlaylist}
