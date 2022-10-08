@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <main>
         <Routes>
-          {userDataCtx.currentView.name !== "" && (
+          {userDataCtx.currentView.songs.length > 0 && (
             <Route path="/playlist" element={<ShowPlaylist />} />
           )}
           <Route path="/" element={<MainPage />} />

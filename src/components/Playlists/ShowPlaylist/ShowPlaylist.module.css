@@ -17,15 +17,31 @@
   opacity: 0.8;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.button-container {
+  margin-left: auto;
+  max-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .playlist-name {
   font-size: 2.5rem;
   text-transform: capitalize;
   color: rgb(82, 77, 77);
   text-align: center;
   position: relative;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid black;
 }
 
-.playlist-name::after {
+/* .playlist-name::after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -33,6 +49,6 @@
   transform: translateX(50%);
   width: 50px;
   height: 5px;
-  background: rgb(133, 236, 236);
+  background: rgb(0, 0, 0);
   border-radius: 25%;
-}
+} */

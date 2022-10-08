@@ -31,6 +31,7 @@ const userDataContext = React.createContext({
   song: songIntitial,
   addPlaylist: (name: string, song: song) => {},
   removePlaylist: (name: string) => {},
+  removeSong: (songId: string) => {},
 });
 
 let firstRender = true;
@@ -116,6 +117,26 @@ export const UserDataContextProvider: React.FC<{
     });
   }
 
+  function removeSong(songId: string) {
+    setPlaylists((prev) => {
+      return prev.map((playlist) => {
+        return playlist.name === currentView.name
+          ? {
+              ...playlist,
+              songs: playlist.songs.filter((songs) => songs.id !== songId),
+            }
+          : playlist;
+      });
+    });
+    setPlaylists((prev) =>
+      prev.filter((playlists) => playlists.songs.length !== 0)
+    );
+    setCurrentView((prev) => ({
+      ...prev,
+      songs: prev.songs.filter((song) => song.id !== songId),
+    }));
+  }
+
   React.useEffect(() => {
     if (authCtx.isLoggedIn || firstRender) {
       return;
@@ -179,6 +200,7 @@ export const UserDataContextProvider: React.FC<{
     playlists,
     addPlaylist,
     removePlaylist,
+    removeSong,
     currentPlaylist,
     currentView,
     playSong,
