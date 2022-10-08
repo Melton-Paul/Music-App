@@ -1,0 +1,38 @@
+.back-button {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 2rem;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+.back-button img {
+  max-width: 30px;
+  margin-right: 1rem;
+}
+.back-button:hover img {
+  transform: translateX(-2px);
+}
+.back-button:hover {
+  opacity: 0.8;
+}
+
+.playlist-name {
+  font-size: 2.5rem;
+  text-transform: capitalize;
+  color: rgb(82, 77, 77);
+  text-align: center;
+  position: relative;
+}
+
+.playlist-name::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 50px;
+  height: 5px;
+  background: rgb(133, 236, 236);
+  border-radius: 25%;
+}

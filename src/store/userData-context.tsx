@@ -25,7 +25,9 @@ const userDataContext = React.createContext({
   playlists: [{ name: "", songs: [songIntitial] }],
   playSong: (obj: song) => {},
   setPlaylist: (mame: string, songs: song[]) => {},
+  setView: (mame: string, songs: song[]) => {},
   currentPlaylist: { name: "", songs: [songIntitial] },
+  currentView: { name: "", songs: [songIntitial] },
   song: songIntitial,
   addPlaylist: (name: string, song: song) => {},
   removePlaylist: (name: string) => {},
@@ -44,11 +46,16 @@ export const UserDataContextProvider: React.FC<{
       songs: song[];
     }[]
   >([]);
+  const [song, setSong] = React.useState(songIntitial);
   const [currentPlaylist, setCurrentPlaylist] = React.useState<{
     name: string;
     songs: song[];
   }>({ name: "", songs: [] });
-  const [song, setSong] = React.useState(songIntitial);
+
+  const [currentView, setCurrentView] = React.useState<{
+    name: string;
+    songs: song[];
+  }>({ name: "", songs: [] });
   const authCtx = React.useContext(authContext);
 
   function playSong(obj: song) {
@@ -80,6 +87,9 @@ export const UserDataContextProvider: React.FC<{
 
   function setPlaylist(name: string, songs: song[]) {
     setCurrentPlaylist({ name, songs });
+  }
+  function setView(name: string, songs: song[]) {
+    setCurrentView({ name, songs });
   }
 
   function addPlaylist(name: string, song: song) {
@@ -165,10 +175,12 @@ export const UserDataContextProvider: React.FC<{
   const contextValues = {
     recents: recentlyPlayed,
     setPlaylist,
+    setView,
     playlists,
     addPlaylist,
     removePlaylist,
     currentPlaylist,
+    currentView,
     playSong,
     song,
   };

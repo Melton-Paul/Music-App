@@ -2,6 +2,7 @@ import React from "react";
 import SmallCard from "../SongCards/SmallCard/SmallCard";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { useNavigate } from "react-router";
+import userDataContext from "../../store/userData-context";
 
 const IndvPlaylist: React.FC<{
   cover: string;
@@ -19,6 +20,7 @@ const IndvPlaylist: React.FC<{
   const [isHovered, setIsHovered] = React.useState(false);
   const [askDelete, setAskDelete] = React.useState(false);
   const navigate = useNavigate();
+  const userDataCtx = React.useContext(userDataContext);
   let timer: any;
 
   function handleEnter() {
@@ -35,6 +37,7 @@ const IndvPlaylist: React.FC<{
     setAskDelete((prev) => !prev);
   }
   function handleClick() {
+    userDataCtx.setView(name, songs);
     navigate("/playlist");
   }
 
