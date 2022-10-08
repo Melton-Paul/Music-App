@@ -131,6 +131,7 @@ export const UserDataContextProvider: React.FC<{
     setPlaylists((prev) =>
       prev.filter((playlists) => playlists.songs.length !== 0)
     );
+
     setCurrentView((prev) => ({
       ...prev,
       songs: prev.songs.filter((song) => song.id !== songId),
