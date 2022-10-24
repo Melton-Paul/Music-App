@@ -130,23 +130,21 @@ const Player: React.FC<PlayerProps> = ({
       <div className={styles["control-container"]}>
         <div className={styles["control-group"]}>
           <div className={styles.controls}>
-            <>
-              <img
-                className={styles.play}
-                src={repeatIcon}
-                alt="Repeat current song"
-                onClick={toggleRepeat}
-                style={repeatStyle}
-              />
-              <img
-                className={styles.play}
-                src={backIcon}
-                alt="Go to previous song"
-                onClick={() => {
-                  changeSong("back");
-                }}
-              />
-            </>
+            <img
+              className={styles.play}
+              src={repeatIcon}
+              alt="Repeat current song"
+              onClick={toggleRepeat}
+              style={repeatStyle}
+            />
+            <img
+              className={styles.play}
+              src={backIcon}
+              alt="Go to previous song"
+              onClick={() => {
+                changeSong("back");
+              }}
+            />
             <div className={styles.control}>
               <img
                 onClick={togglePlaying}
@@ -155,26 +153,26 @@ const Player: React.FC<PlayerProps> = ({
                 alt={isPlaying ? "Pause Song" : "Play song"}
               />
             </div>
-            <>
-              <img
-                className={styles.play}
-                src={forwardIcon}
-                alt="Go to next song"
-                onClick={() => {
-                  changeSong("forward");
-                }}
-              />
-              <img
-                className={styles.play}
-                src={shuffleIcon}
-                alt="Shuffle playlist"
-                onClick={shufflePlaylist}
-                style={shuffleStyle}
-              />
-            </>
+            <img
+              className={styles.play}
+              src={forwardIcon}
+              alt="Go to next song"
+              onClick={() => {
+                changeSong("forward");
+              }}
+            />
+            <img
+              className={styles.play}
+              src={shuffleIcon}
+              alt="Shuffle playlist"
+              onClick={shufflePlaylist}
+              style={shuffleStyle}
+            />
           </div>
-          <div className={styles.progres_bar}>
-            <p>{convertTime(songData.progress! || 0)}</p>
+          <div className={styles.progress_bar}>
+            <p className={styles["progress_bar-time"]}>
+              {convertTime(audioRef.current?.currentTime || 0)}
+            </p>
             <div
               className={styles["progress_bar-outer"]}
               onClick={checkWidth}
@@ -186,8 +184,10 @@ const Player: React.FC<PlayerProps> = ({
                 style={progressStyle}
                 id="progress1"
               ></div>
-            </div>{" "}
-            <p>{convertTime(songData.length! || 0)}</p>
+            </div>
+            <p className={styles["progress_bar-time"]}>
+              {convertTime(songData.length! || 0)}
+            </p>
           </div>
         </div>
         <Volume

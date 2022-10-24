@@ -26,17 +26,30 @@ code {
 
 main {
   display: flex;
-  flex-direction: column;
-  max-width: 1440px;
+  overflow: hidden;
   width: 100%;
-  padding: 0 2rem;
-  padding-top: 10rem;
+  height: 92vh;
   padding-bottom: 20rem;
-  margin: 0 auto;
+}
+.content {
+  overflow-y: auto;
+  height: 100vh;
+  padding: 0 1rem;
+  padding-bottom: 30rem;
+  padding-top: 8rem;
+  flex-grow: 1;
+  position: relative;
+}
+
+.sidebar {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
-  main {
-    padding-bottom: 40rem;
+  .sidebar {
+    display: block;
+    max-width: 250px;
+    background: black;
+    height: 100vh;
   }
 }

@@ -28,8 +28,7 @@ const AddToPlaylist: React.FC<{
   if (playlistName.length < 1) error = "Please Input a name";
   if (playlistName.length > 10) error = "Name can't be greater than 10 char.";
 
-  function addPlaylist(e: any) {
-    e.preventDefault();
+  function addPlaylist() {
     if (!playlistValid) {
       return;
     }
@@ -48,7 +47,8 @@ const AddToPlaylist: React.FC<{
           max="10"
         />
         {!playlistValid && isTouched && <p>{error}</p>}
-        <button>Add Playlist</button>
+        <button onClick={addPlaylist}>Add Playlist</button>
+        <button onClick={() => setIsAdding(false)}>Cancel</button>
       </form>
     </div>
   );

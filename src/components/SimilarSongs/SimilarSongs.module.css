@@ -11,12 +11,14 @@
 }
 @media screen and (min-width: 800px) {
   .similarSongs {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 2rem;
   }
 }
 @media screen and (min-width: 1000px) {
   .similarSongs {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0;
   }
 }
 @media screen and (min-width: 1200px) {

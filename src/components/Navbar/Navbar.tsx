@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const logo = require("../../images/logomusic.png");
 const expand = require("../../images/expand-arrow.png");
 
-export default function Navbar() {
+const Navbar = () => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const authCtx = React.useContext(authContext);
 
@@ -43,4 +43,5 @@ export default function Navbar() {
       </ul>
     </nav>
   );
-}
+};
+export default Navbar;

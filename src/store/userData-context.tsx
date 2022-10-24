@@ -145,6 +145,7 @@ export const UserDataContextProvider: React.FC<{
 
     setSong(songIntitial);
     setRecentlyPlayed([]);
+    setPlaylists([]);
   }, [authCtx.isLoggedIn]);
 
   React.useEffect(() => {

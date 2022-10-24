@@ -1,9 +1,8 @@
 .player {
-  max-width: 1200px;
   width: 100%;
   display: flex;
   padding: 1rem;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   margin: 0 auto;
@@ -74,10 +73,11 @@
   padding: 1rem;
   cursor: pointer;
 }
-.progres_bar {
+.progress_bar {
   display: flex;
   width: 100%;
   align-items: center;
+  justify-content: center;
 }
 
 .progress_bar-outer {
@@ -92,6 +92,10 @@
 }
 .progress_bar-outer:hover {
   transform: scale(1.05);
+}
+.progress_bar-time {
+  font-size: 1.3rem;
+  font-weight: 500;
 }
 
 .progress_bar-inner {
@@ -111,7 +115,8 @@
     max-width: 300px;
   }
   .control-container {
-    max-width: 500px;
+    max-width: 100%;
+    justify-content: space-between;
     flex-direction: row;
   }
   .control-group {
