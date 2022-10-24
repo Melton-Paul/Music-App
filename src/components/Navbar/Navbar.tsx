@@ -12,6 +12,10 @@ const Navbar = () => {
   function toggleExpanded() {
     setIsExpanded((prev) => !prev);
   }
+  function logOut() {
+    authCtx.logOut();
+    toggleExpanded();
+  }
 
   return (
     <nav className={styles.navbar}>
@@ -34,7 +38,7 @@ const Navbar = () => {
         <li>Account</li>
         <li>Favorites</li>
         {authCtx.isLoggedIn ? (
-          <button onClick={authCtx.logOut}>Log Out</button>
+          <button onClick={logOut}>Log Out</button>
         ) : (
           <Link to="login">
             <button>Log In</button>

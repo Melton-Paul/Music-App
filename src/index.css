@@ -17,11 +17,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --songProgress: 0%;
+  background: rgb(18, 18, 18);
+  background: linear-gradient(
+    0deg,
+    rgba(18, 18, 18, 1) 69%,
+    rgba(46, 6, 6, 0.975) 100%
+  );
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+h2 {
+  font-size: 2rem;
+  color: white;
 }
 
 main {
@@ -34,7 +44,7 @@ main {
 .content {
   overflow-y: auto;
   height: 100vh;
-  padding: 0 1rem;
+  padding: 0 3rem;
   padding-bottom: 30rem;
   padding-top: 8rem;
   flex-grow: 1;

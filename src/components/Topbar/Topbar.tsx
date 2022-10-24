@@ -6,8 +6,8 @@ const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
     background:
       scroll > 0
         ? scroll > 100
-          ? "rgba(0,0,0,1)"
-          : "rgba(0,0,0,.5)"
+          ? "rgba(46, 6, 6, 1)"
+          : "rgba(46, 6, 6,.5)"
         : "transparent",
   };
   return (

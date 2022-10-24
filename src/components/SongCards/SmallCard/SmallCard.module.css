@@ -1,7 +1,7 @@
 .small-card {
   display: flex;
   width: 100%;
-  background: rgb(122, 113, 113);
+  background: rgba(83, 74, 74, 0.2);
   align-items: center;
   border-radius: 5px;
   overflow: hidden;
@@ -9,7 +9,6 @@
   cursor: pointer;
   z-index: 1;
   transition: all 0.3s;
-  box-shadow: 0px 0px 4px 3px rgba(190, 189, 189, 0.8);
   margin: 0.5rem 0;
 }
 
@@ -36,10 +35,4 @@
 
 .small-card:hover {
   background: rgba(122, 113, 113, 0.8);
-}
-
-@media screen and (min-width: 768px) {
-  .small-card {
-    box-shadow: 0px 2px 7px 3px #cccc;
-  }
 }

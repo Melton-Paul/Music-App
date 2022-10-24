@@ -6,6 +6,7 @@
   align-items: center;
   position: relative;
   margin: 0 auto;
+  color: rgb(192, 192, 192);
 }
 
 .songInfo-container {

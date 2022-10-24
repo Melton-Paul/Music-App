@@ -27,7 +27,8 @@
   width: 100%;
   padding: 1rem 1.5rem;
   padding-right: 3rem;
-  background: lightgoldenrodyellow;
+  background: black;
+  color: rgb(177, 172, 172);
   z-index: 2;
   transition: 0.5s all;
 }
