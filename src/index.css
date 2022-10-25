@@ -58,6 +58,24 @@ main {
   display: none;
 }
 
+/* Scroll Bar */
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  height: 40px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(49, 46, 46);
+}
+
 @media screen and (min-width: 768px) {
   .sidebar {
     display: block;
