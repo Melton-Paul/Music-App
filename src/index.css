@@ -44,11 +44,14 @@ main {
 .content {
   overflow-y: auto;
   height: 100vh;
-  padding: 0 3rem;
   padding-bottom: 30rem;
-  padding-top: 8rem;
   flex-grow: 1;
   position: relative;
+}
+.content-lower {
+  padding-top: 8rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .sidebar {

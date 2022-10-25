@@ -29,7 +29,7 @@
   padding-right: 3rem;
   background: black;
   color: rgb(177, 172, 172);
-  z-index: 2;
+  z-index: 5;
   transition: 0.5s all;
 }
 .navbar .expand {

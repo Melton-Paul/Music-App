@@ -1,6 +1,7 @@
 import React from "react";
 import authContext from "../../store/auth-context";
 import { useNavigate } from "react-router";
+import styles from "./Auth.module.css";
 
 export default function Auth() {
   const [userDetails, setUserDetails] = React.useState({
@@ -71,9 +72,9 @@ export default function Auth() {
   }
 
   return (
-    <div>
-      {isLogin ? "Welcome Back" : "Sign Up"}
-      <form>
+    <div className={styles.auth}>
+      <h2>{isLogin ? "Welcome Back" : "Sign Up"}</h2>
+      <form className={styles["auth-form"]}>
         <input
           type="email"
           placeholder="Email"
@@ -101,12 +102,16 @@ export default function Auth() {
             onBlur={handleBlur}
           />
         )}
-        {confirmPass.isTouched && userDetails.pass !== confirmPass.pass && (
-          <p>Passwords must match</p>
-        )}
+        {!isLogin &&
+          confirmPass.isTouched &&
+          userDetails.pass !== confirmPass.pass && (
+            <p className={styles.warning}>Passwords must match</p>
+          )}
       </form>
-      <button onClick={handleSubmit}>{isLogin ? "Log In" : "Sign Up"}</button>
-      <p onClick={() => setIsLogin((prev) => !prev)}>
+      <button className={styles.submit} onClick={handleSubmit}>
+        {isLogin ? "Log In" : "Create Account"}
+      </button>
+      <p className={styles.toggle} onClick={() => setIsLogin((prev) => !prev)}>
         {isLogin ? "Create New Account" : "Log in with existing account"}
       </p>
     </div>

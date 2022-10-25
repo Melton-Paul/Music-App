@@ -1,0 +1,10 @@
+.songs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.search-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

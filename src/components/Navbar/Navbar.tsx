@@ -37,11 +37,14 @@ const Navbar = () => {
         <li>Library</li>
         <li>Account</li>
         <li>Favorites</li>
+        <li>
+          <Link to="search">Search</Link>
+        </li>
         {authCtx.isLoggedIn ? (
           <button onClick={logOut}>Log Out</button>
         ) : (
           <Link to="login">
-            <button>Log In</button>
+            <button onClick={toggleExpanded}>Log In</button>
           </Link>
         )}
       </ul>

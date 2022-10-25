@@ -8,6 +8,7 @@ import PlaySong from "./components/PlaySong/PlaySong";
 import userDataContext from "./store/userData-context";
 import ShowPlaylist from "./components/Playlists/ShowPlaylist/ShowPlaylist";
 import Topbar from "./components/Topbar/Topbar";
+import SearchPage from "./components/Search/SearchPage";
 
 function App() {
   const authCtx = React.useContext(authContext);
@@ -32,18 +33,23 @@ function App() {
 
   return (
     <>
-      <Topbar scroll={scroll} />
       <main style={style}>
         <Navbar />
         <div className="content" ref={scrollRef}>
-          <Routes>
-            {userDataCtx.currentView.songs.length > 0 && (
-              <Route path="/playlist" element={<ShowPlaylist />} />
-            )}
-            <Route path="/" element={<MainPage />} />
-            {!authCtx.isLoggedIn && <Route path="/login" element={<Auth />} />}
-            <Route path="*" element={<MainPage />} />
-          </Routes>
+          <Topbar scroll={scroll} />
+          <div className="content-lower">
+            <Routes>
+              {userDataCtx.currentView.songs.length > 0 && (
+                <Route path="/playlist" element={<ShowPlaylist />} />
+              )}
+              <Route path="/" element={<MainPage />} />
+              {!authCtx.isLoggedIn && (
+                <Route path="/login" element={<Auth />} />
+              )}
+              <Route path="*" element={<MainPage />} />
+              <Route path="/search" element={<SearchPage />} />
+            </Routes>
+          </div>
         </div>
       </main>
       {(userDataCtx.song.id ||

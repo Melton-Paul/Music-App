@@ -1,7 +1,7 @@
 .medium-card {
   display: flex;
   flex-direction: column;
-  width: 220px;
+  width: 200px;
   background: rgba(53, 54, 53, 0.3);
   border-radius: 5px;
   overflow: hidden;
@@ -45,4 +45,9 @@
 
 .medium-card:hover {
   background: rgba(122, 113, 113, 0.3);
+}
+@media screen and (min-width: 768px) {
+  .medium-card {
+    max-width: 220px;
+  }
 }

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+import { SongContextProvider } from "./store/song-context";
 import { AuthContextProvider } from "./store/auth-context";
 import { UserDataContextProvider } from "./store/userData-context";
 
@@ -13,7 +14,9 @@ root.render(
   <BrowserRouter>
     <AuthContextProvider>
       <UserDataContextProvider>
-        <App />
+        <SongContextProvider>
+          <App />
+        </SongContextProvider>
       </UserDataContextProvider>
     </AuthContextProvider>
   </BrowserRouter>
