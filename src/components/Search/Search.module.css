@@ -25,8 +25,8 @@
 
 @media screen and (min-width: 768px) {
   .search-input {
-    position: absolute;
-    top: 20px;
+    position: fixed;
+    top: 13px;
     max-width: 350px;
   }
 }

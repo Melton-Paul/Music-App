@@ -31,11 +31,13 @@ const Volume: React.FC<{
 
   return (
     <section className={styles["volume-changer"]}>
-      <img
-        src={isMuted ? muteIcon : volumeIcon}
-        alt="Change the volume"
+      <i
+        className={
+          isMuted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high"
+        }
+        aria-label="Change the volume"
         onClick={handleMute}
-      />
+      ></i>
       {!isMuted && (
         <div
           className={styles["progress_bar-outer"]}

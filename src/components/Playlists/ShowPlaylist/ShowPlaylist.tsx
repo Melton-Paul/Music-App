@@ -43,7 +43,7 @@ const ShowPlaylist = () => {
   return (
     <div>
       <Link to="/" className={styles["back-button"]}>
-        <img src={backIcon} alt="Go back to main page" />
+        <i className="fa-solid fa-arrow-left"></i>
         <span>Go back</span>
       </Link>
       <div className={styles.header}>

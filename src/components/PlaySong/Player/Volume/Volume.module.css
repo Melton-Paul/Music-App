@@ -5,9 +5,11 @@
   margin-left: 2rem;
   justify-content: center;
 }
-.volume-changer img {
+.volume-changer i {
+  font-size: 2rem;
   max-width: 30px;
   cursor: pointer;
+  margin-top: 0.5rem;
 }
 
 .progress_bar-outer {

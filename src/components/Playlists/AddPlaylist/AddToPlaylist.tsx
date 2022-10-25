@@ -28,7 +28,8 @@ const AddToPlaylist: React.FC<{
   if (playlistName.length < 1) error = "Please Input a name";
   if (playlistName.length > 10) error = "Name can't be greater than 10 char.";
 
-  function addPlaylist() {
+  function addPlaylist(e: any) {
+    e.preventDefault();
     if (!playlistValid) {
       return;
     }

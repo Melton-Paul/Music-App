@@ -12,7 +12,15 @@ const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
   };
   return (
     <div className={styles.topBar} style={style}>
-      <h2>Top</h2>
+      <button className={styles["profile-button"]}>
+        <div className={styles["profile-button-icon"]}>
+          <i className="fa-regular fa-user"></i>
+        </div>
+        <p>Your Profile</p>
+        <div className={styles["profile-button-carat"]}>
+          <i className="fa-solid fa-caret-down"></i>
+        </div>
+      </button>
     </div>
   );
 };
