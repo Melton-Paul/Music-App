@@ -3,12 +3,6 @@ import styles from "./Player.module.css";
 import userDataContext from "../../../store/userData-context";
 import AddToPlaylist from "../../Playlists/AddPlaylist/AddToPlaylist";
 import Volume from "./Volume/Volume";
-const pauseIcon = require("../../../images/pause.png");
-const playIcon = require("../../../images/play.png");
-const forwardIcon = require("../../../images/fast-forward.png");
-const backIcon = require("../../../images/rewind.png");
-const shuffleIcon = require("../../../images/shuffle.png");
-const repeatIcon = require("../../../images/repeat.png");
 
 interface PlayerProps {
   isPlaying: boolean;
@@ -63,12 +57,10 @@ const Player: React.FC<PlayerProps> = ({
   };
 
   const repeatStyle = {
-    boxShadow: shouldRepeat ? "0px 0px 3px #ccc" : "none",
-    borderRadius: "100%",
+    color: shouldRepeat ? "lightblue" : "grey",
   };
   const shuffleStyle = {
-    boxShadow: isShuffling ? "0px 0px 3px #ccc" : "none",
-    borderRadius: "100%",
+    color: isShuffling ? "lightblue" : "grey",
   };
 
   function checkWidth(e: any) {
@@ -90,6 +82,7 @@ const Player: React.FC<PlayerProps> = ({
 
   function shufflePlaylist() {
     shuffle(!isShuffling);
+    setIsPlaying(true);
   }
 
   function convertTime(sec: number) {
@@ -130,44 +123,42 @@ const Player: React.FC<PlayerProps> = ({
       <div className={styles["control-container"]}>
         <div className={styles["control-group"]}>
           <div className={styles.controls}>
-            <img
-              className={styles.play}
-              src={repeatIcon}
-              alt="Repeat current song"
+            <i
+              className="fa-solid fa-repeat"
+              aria-label="Repeat current song"
               onClick={toggleRepeat}
               style={repeatStyle}
-            />
-            <img
-              className={styles.play}
-              src={backIcon}
-              alt="Go to previous song"
+            ></i>
+            <i
+              className="fa-solid fa-backward"
+              aria-label="Go to previous song"
               onClick={() => {
                 changeSong("back");
               }}
-            />
-            <div className={styles.control}>
-              <img
-                onClick={togglePlaying}
-                className={styles.play}
-                src={isPlaying ? pauseIcon : playIcon}
-                alt={isPlaying ? "Pause Song" : "Play song"}
-              />
-            </div>
-            <img
-              className={styles.play}
-              src={forwardIcon}
-              alt="Go to next song"
+            ></i>
+            <i
+              className={
+                isPlaying
+                  ? "fa-solid fa-circle-pause"
+                  : "fa-solid fa-circle-play"
+              }
+              style={{ fontSize: "4rem" }}
+              onClick={togglePlaying}
+              aria-label={isPlaying ? "Pause Song" : "Play song"}
+            ></i>
+            <i
+              className="fa-solid fa-forward"
+              aria-label="Go to next song"
               onClick={() => {
                 changeSong("forward");
               }}
-            />
-            <img
-              className={styles.play}
-              src={shuffleIcon}
-              alt="Shuffle playlist"
+            ></i>
+            <i
+              className="fa-solid fa-shuffle"
+              aria-label="Shuffle playlist"
               onClick={shufflePlaylist}
               style={shuffleStyle}
-            />
+            ></i>
           </div>
           <div className={styles.progress_bar}>
             <p className={styles["progress_bar-time"]}>

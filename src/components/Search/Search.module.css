@@ -9,8 +9,9 @@
   overflow: hidden;
   padding: 1rem 1.5rem;
 }
-.search-input img {
-  max-width: 25px;
+.search-input i {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
 }
 .search-input input {
   border: none;

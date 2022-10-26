@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "./Volume.module.css";
-const volumeIcon = require("../../../../images/high-volume.png");
-const muteIcon = require("../../../../images/mute.png");
 
 const Volume: React.FC<{
   checkWidth: (e: any) => void;

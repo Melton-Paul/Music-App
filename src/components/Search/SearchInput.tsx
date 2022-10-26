@@ -1,7 +1,6 @@
 import React from "react";
 import songContext from "../../store/song-context";
 import styles from "./Search.module.css";
-const searchIcon = require("../../images/search.png");
 
 export default function SearchInput() {
   const songCtx = React.useContext(songContext);
@@ -13,13 +12,9 @@ export default function SearchInput() {
     searchSongs(e.target.value);
   }
 
-  // React.useEffect(()=>{
-  //   searchSongs(value)
-  // }, [value, searchSongs])
-
   return (
     <div className={styles["search-input"]}>
-      <img src={searchIcon} alt="search button" />
+      <i className="fa-solid fa-magnifying-glass"></i>
       <input
         type="text"
         placeholder="What do you want to listen to?"

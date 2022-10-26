@@ -3,7 +3,6 @@ import userDataContext from "../../../store/userData-context";
 import SmallCard from "../../SongCards/SmallCard/SmallCard";
 import { Link } from "react-router-dom";
 import styles from "./ShowPlaylist.module.css";
-const backIcon = require("../../../images/arrow.png");
 
 const ShowPlaylist = () => {
   const userDataCtx = React.useContext(userDataContext);
