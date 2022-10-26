@@ -1,7 +1,28 @@
+.similar-page {
+  display: flex;
+  flex-direction: column;
+}
+.similar-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .similarSongs {
   display: grid;
   gap: 1rem;
   width: 100%;
+}
+.link {
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: rgb(189, 196, 196);
+  align-self: flex-end;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 800px) {

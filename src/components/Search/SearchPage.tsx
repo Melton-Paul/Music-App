@@ -9,6 +9,8 @@ export default function SearchPage() {
   const songs =
     songCtx.filteredSongs.length > 0 ? songCtx.filteredSongs : songCtx.songs;
 
+  console.log(songCtx.songs);
+
   const songHtml = songs.map((song) => (
     <MediumCard
       img={song.img}
@@ -17,6 +19,7 @@ export default function SearchPage() {
       desc={song.desc}
       artist={song.artist}
       mp3={song.mp3}
+      key={song.id}
     />
   ));
 
