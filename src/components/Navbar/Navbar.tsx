@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Navbar.module.css";
 import authContext from "../../store/auth-context";
+import userDataContext from "../../store/userData-context";
 import { Link } from "react-router-dom";
 const logo = require("../../images/logomusic.png");
 const expand = require("../../images/expand-arrow.png");
@@ -8,6 +9,7 @@ const expand = require("../../images/expand-arrow.png");
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const authCtx = React.useContext(authContext);
+  const userDataCtx = React.useContext(userDataContext);
 
   function toggleExpanded() {
     setIsExpanded((prev) => !prev);
@@ -16,6 +18,21 @@ const Navbar = () => {
     authCtx.logOut();
     toggleExpanded();
   }
+  function handleClick(name: string, songs: any) {
+    userDataCtx.setView(name, songs);
+  }
+
+  const playlistHtml = userDataCtx.playlists.map((playlist) => (
+    <Link to="/playlist">
+      <li
+        onClick={() => {
+          handleClick(playlist.name, playlist.songs);
+        }}
+      >
+        {playlist.name}
+      </li>
+    </Link>
+  ));
 
   return (
     <nav className={styles.navbar}>
@@ -34,20 +51,37 @@ const Navbar = () => {
           !isExpanded ? styles.collapsed : ""
         }`}
       >
-        <li>Library</li>
-        <li>Account</li>
-        <li>Favorites</li>
         <li>
-          <Link to="search">Search</Link>
-        </li>
-        {authCtx.isLoggedIn ? (
-          <button onClick={logOut}>Log Out</button>
-        ) : (
-          <Link to="login">
-            <button onClick={toggleExpanded}>Log In</button>
+          <Link to="/">
+            <i className="fa-solid fa-house"></i>
+            Home
           </Link>
-        )}
+        </li>
+        <li>
+          <Link to="search">
+            <i className="fa-solid fa-magnifying-glass"></i>
+            Search
+          </Link>
+        </li>
+        <li>
+          {authCtx.isLoggedIn ? (
+            <button className={styles.logOut} onClick={logOut}>
+              Log Out
+            </button>
+          ) : (
+            <Link to="login">
+              <i className="fa-solid fa-right-to-bracket"></i>
+              Log In
+            </Link>
+          )}
+        </li>
       </ul>
+      {userDataCtx.playlists.length > 0 && (
+        <div className={styles.playlists}>
+          <h3 className={styles["playlist-title"]}>Your Playlists</h3>
+          <ul className={styles["playlist-list"]}>{playlistHtml}</ul>
+        </div>
+      )}
     </nav>
   );
 };

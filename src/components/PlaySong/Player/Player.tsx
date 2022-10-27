@@ -61,7 +61,12 @@ const Player: React.FC<PlayerProps> = ({
   };
   const shuffleStyle = {
     color: isShuffling ? "lightblue" : "grey",
+    cursor:
+      userDataCtx.currentPlaylist.songs.length === 0
+        ? "not-allowed"
+        : "pointer",
   };
+  console.log(userDataCtx.currentPlaylist.songs);
 
   function checkWidth(e: any) {
     let width;

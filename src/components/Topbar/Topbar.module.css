@@ -6,6 +6,7 @@
   padding: 1.5rem;
   background: rgb(190, 177, 177);
   z-index: 2;
+  transition: all 0.15s;
 }
 .profile-button {
   position: absolute;
@@ -24,6 +25,7 @@
   overflow: hidden;
   border: none;
   padding-right: 1.4rem;
+  transition: all 0.2s;
 }
 .profile-button p {
   font-weight: bolder;
@@ -49,6 +51,41 @@
   font-size: 1.5rem;
   color: white;
   justify-content: center;
+}
+.modal {
+  position: absolute;
+  background: rgb(36, 33, 33);
+  border-radius: 3px;
+  top: 63px;
+  right: 294px;
+  max-width: 200px;
+  width: 100%;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  box-shadow: -2px 3px 6px 3px #201e1e;
+}
+.profile-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  color: whitesmoke;
+}
+.profile-list li {
+  padding: 1.2rem 1.5rem;
+  margin: 0.25rem;
+  cursor: pointer;
+}
+.profile-list li:hover {
+  background: rgb(66, 60, 60);
+}
+.profile-list li:last-of-type {
+  border-top: 1px solid #4b4a4a;
+}
+.profile-list a {
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 @media screen and (min-width: 768px) {

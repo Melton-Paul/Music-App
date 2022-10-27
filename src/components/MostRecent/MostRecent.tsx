@@ -20,7 +20,7 @@ export default function MostRecent() {
 
   return (
     <section>
-      <h2>Your Recents</h2>
+      {userDataCtx.recents.length > 0 && <h2>Your Recents</h2>}
       <article className={styles.mostrecent}>{recentHtml}</article>
     </section>
   );

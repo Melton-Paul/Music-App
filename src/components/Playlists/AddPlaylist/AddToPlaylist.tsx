@@ -23,10 +23,10 @@ const AddToPlaylist: React.FC<{
   }
   let error;
 
-  const playlistValid = playlistName.length > 0 && playlistName.length < 11;
+  const playlistValid = playlistName.length > 0 && playlistName.length < 21;
 
   if (playlistName.length < 1) error = "Please Input a name";
-  if (playlistName.length > 10) error = "Name can't be greater than 10 char.";
+  if (playlistName.length > 21) error = "Name can't be greater than 20 char.";
 
   function addPlaylist(e: any) {
     e.preventDefault();
@@ -45,7 +45,7 @@ const AddToPlaylist: React.FC<{
           onChange={handleChange}
           value={playlistName}
           min="1"
-          max="10"
+          max="20"
         />
         {!playlistValid && isTouched && <p>{error}</p>}
         <button onClick={addPlaylist}>Add Playlist</button>

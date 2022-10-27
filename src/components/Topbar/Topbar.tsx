@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 
 const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
   const authCtx = React.useContext(authContext);
+  const [isShowing, setIsShowing] = React.useState(false);
+
+  function toggleShowing() {
+    setIsShowing((prev) => !prev);
+  }
 
   const style = {
     background:
@@ -13,6 +18,9 @@ const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
           ? "rgba(46, 6, 6, 1)"
           : "rgba(46, 6, 6,.5)"
         : "transparent",
+  };
+  const buttonStyle = {
+    background: isShowing ? "rgb(36, 33, 33)" : "black",
   };
 
   return (
@@ -24,15 +32,36 @@ const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
           </button>
         </Link>
       ) : (
-        <button className={styles["profile-button"]}>
+        <button
+          className={styles["profile-button"]}
+          style={buttonStyle}
+          onClick={toggleShowing}
+        >
           <div className={styles["profile-button-icon"]}>
             <i className="fa-regular fa-user"></i>
           </div>
           <p>Your Profile</p>
           <div className={styles["profile-button-carat"]}>
-            <i className="fa-solid fa-caret-down"></i>
+            <i
+              className={
+                !isShowing ? "fa-solid fa-caret-down" : "fa-solid fa-caret-up"
+              }
+            ></i>
           </div>
         </button>
+      )}
+      {authCtx.isLoggedIn && isShowing && (
+        <div className={styles.modal}>
+          <ul className={styles["profile-list"]}>
+            <li>
+              <Link to="account">Account</Link>
+            </li>
+            <li>
+              <Link to="settings">Settings</Link>
+            </li>
+            <li onClick={() => authCtx.logOut()}>Log Out</li>
+          </ul>
+        </div>
       )}
     </div>
   );

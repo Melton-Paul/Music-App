@@ -17,7 +17,7 @@
   font-size: 1.4rem;
   color: rgb(189, 196, 196);
   align-self: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-weight: bold;
 }
 .link:hover {
@@ -50,5 +50,11 @@
   }
   .similarSongs article {
     flex-shrink: 0;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .similarSongs {
+    justify-content: flex-start;
+    gap: 1rem 2.5rem;
   }
 }

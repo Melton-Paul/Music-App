@@ -20,9 +20,9 @@ export default function Playlists() {
   });
 
   return (
-    <div>
+    <section>
       <h2>Playlists</h2>
       {playlistHtml}
-    </div>
+    </section>
   );
 }

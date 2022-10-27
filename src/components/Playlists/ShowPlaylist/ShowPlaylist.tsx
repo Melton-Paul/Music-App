@@ -3,12 +3,16 @@ import userDataContext from "../../../store/userData-context";
 import SmallCard from "../../SongCards/SmallCard/SmallCard";
 import { Link } from "react-router-dom";
 import styles from "./ShowPlaylist.module.css";
+import DeleteModal from "../../DeleteModal/DeleteModal";
 
 const ShowPlaylist = () => {
   const userDataCtx = React.useContext(userDataContext);
   const name = userDataCtx.currentView.name;
+  const [askDelete, setAskDelete] = React.useState(false);
 
-  console.log(userDataCtx.currentView);
+  function toggleDelete() {
+    setAskDelete((prev) => !prev);
+  }
 
   const playlistHtml = userDataCtx.currentView.songs.map((song) => (
     <div>
@@ -41,6 +45,12 @@ const ShowPlaylist = () => {
 
   return (
     <div>
+      {askDelete && (
+        <DeleteModal
+          deleteFunction={removePlaylist}
+          cancelFunction={toggleDelete}
+        />
+      )}
       <Link to="/" className={styles["back-button"]}>
         <i className="fa-solid fa-arrow-left"></i>
         <span>Go back</span>
@@ -50,7 +60,7 @@ const ShowPlaylist = () => {
           {userDataCtx.currentView.name}
         </h2>
         <div className={styles["button-container"]}>
-          <button onClick={removePlaylist}>Delete Playlist</button>
+          <button onClick={toggleDelete}>Delete Playlist</button>
           <button onClick={startPlaylist}>Start Playlist</button>
         </div>
       </div>
