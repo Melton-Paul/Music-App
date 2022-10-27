@@ -9,3 +9,9 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media screen and (min-width: 1440px) {
+  .songs-container {
+    justify-content: flex-start;
+  }
+}

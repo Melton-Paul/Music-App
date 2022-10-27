@@ -21,6 +21,7 @@ const songIntitial: song = {
 
 const songContext = React.createContext({
   songs: [songIntitial],
+  suggestedSongs: [songIntitial],
   filteredSongs: [songIntitial],
   searchSongs: (name: string) => {},
 });
@@ -30,6 +31,7 @@ export const SongContextProvider: React.FC<{ children: React.ReactNode }> = (
 ) => {
   const [songs, setSongs] = React.useState<song[]>([]);
   const [filteredSongs, setFilteredSongs] = React.useState<song[]>([]);
+  const [suggestedSongs, setSuggestedSongs] = React.useState<song[]>([]);
 
   const searchSongs = React.useCallback(
     (name: string) => {
@@ -43,9 +45,19 @@ export const SongContextProvider: React.FC<{ children: React.ReactNode }> = (
     [songs]
   );
 
+  React.useEffect(() => {
+    const temp = [...songs];
+    for (let i = 0; i < 3; i++) {
+      const num = Math.floor(Math.random() * temp.length);
+      const song = temp.splice(num, 1);
+      setSuggestedSongs((prev) => [...prev, ...song]);
+    }
+  }, [songs]);
+
   const contextValues = {
     songs,
     filteredSongs,
+    suggestedSongs,
     searchSongs,
   };
 

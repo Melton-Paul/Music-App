@@ -45,6 +45,7 @@ main {
   overflow-y: auto;
   height: 100vh;
   padding-bottom: 30rem;
+  padding-top: 5rem;
   flex-grow: 1;
   position: relative;
 }
@@ -82,5 +83,8 @@ main {
     max-width: 250px;
     background: black;
     height: 100vh;
+  }
+  .content {
+    padding-top: 0;
   }
 }
