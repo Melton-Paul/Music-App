@@ -66,7 +66,6 @@ const Player: React.FC<PlayerProps> = ({
         ? "not-allowed"
         : "pointer",
   };
-  console.log(userDataCtx.currentPlaylist.songs);
 
   function checkWidth(e: any) {
     let width;

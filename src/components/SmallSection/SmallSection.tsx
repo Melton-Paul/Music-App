@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./SmallSection.module.css";
 import SmallCard from "../SongCards/SmallCard/SmallCard";
-import userDataContext from "../../store/userData-context";
 
 interface song {
   name: string;
@@ -16,8 +15,6 @@ const SmallSection: React.FC<{ title: string; songData: song[] }> = ({
   title,
   songData,
 }) => {
-  const userDataCtx = React.useContext(userDataContext);
-
   const songHtml = songData.map((song) => (
     <SmallCard
       img={song.img}

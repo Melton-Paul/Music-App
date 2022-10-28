@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./PlaySong.module.scss";
+import styles from "./PlaySong.module.css";
 import userDataContext from "../../store/userData-context";
 import Player from "./Player/Player";
 
@@ -29,8 +29,6 @@ export default function PlaySong() {
   const [shouldRepeat, setShouldRepeat] = React.useState(false);
   const [isShuffling, setIsShuffling] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
-
-  console.log(userDataCtx.currentPlaylist);
 
   React.useEffect(() => {
     setSongs(userDataCtx.currentPlaylist.songs);

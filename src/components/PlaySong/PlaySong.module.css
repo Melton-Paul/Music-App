@@ -6,15 +6,14 @@
   z-index: 5;
   box-shadow: 0px 0px 6px 1px rgb(44, 41, 41);
   background: rgb(24, 24, 24);
-
-  .play {
-    max-width: 45px;
-    width: 100%;
-    cursor: pointer;
-  }
-  .play:hover {
-    transform: scale(1.05);
-  }
+}
+.play {
+  max-width: 45px;
+  width: 100%;
+  cursor: pointer;
+}
+.play:hover {
+  transform: scale(1.05);
 }
 .controls-container {
   display: flex;

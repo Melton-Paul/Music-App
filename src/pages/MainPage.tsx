@@ -9,8 +9,6 @@ export default function MainPage() {
   const userDataCtx = React.useContext(userDataContext);
   const songCtx = React.useContext(songContext);
 
-  console.log(userDataCtx.recents);
-
   return (
     <>
       {userDataCtx.recents.length > 0 ? (

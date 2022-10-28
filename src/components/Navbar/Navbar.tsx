@@ -23,7 +23,7 @@ const Navbar = () => {
   }
 
   const playlistHtml = userDataCtx.playlists.map((playlist) => (
-    <Link to="/playlist">
+    <Link to="/playlist" key={playlist.name}>
       <li
         onClick={() => {
           handleClick(playlist.name, playlist.songs);

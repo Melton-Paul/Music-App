@@ -5,8 +5,6 @@ import IndvPlaylist from "./IndvPlaylist";
 export default function Playlists() {
   const userDataCtx = React.useContext(userDataContext);
 
-  console.log(userDataCtx.playlists);
-
   const playlistHtml = userDataCtx.playlists.map((playlist) => {
     return (
       <IndvPlaylist
