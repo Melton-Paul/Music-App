@@ -75,7 +75,7 @@ const IndvPlaylist: React.FC<{
       </div>
       {isHovered && !askDelete && (
         <button className={styles["delete-button"]} onClick={toggleDelete}>
-          Remove
+          Delete
         </button>
       )}
     </div>

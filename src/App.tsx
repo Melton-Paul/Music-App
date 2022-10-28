@@ -31,7 +31,7 @@ function App() {
     height: userDataCtx.song.name === "" ? "100vh" : "92vh",
   };
   const contentStyle = {
-    paddingBottom: userDataCtx.song.name !== "" ? "20rem" : "2rem",
+    paddingBottom: userDataCtx.song.name !== "" ? "20rem" : "3rem",
   };
 
   return (
