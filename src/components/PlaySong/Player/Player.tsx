@@ -4,6 +4,7 @@ import userDataContext from "../../../store/userData-context";
 import AddToPlaylist from "../../Playlists/AddPlaylist/AddToPlaylist";
 import Volume from "./Volume/Volume";
 import ToolTip from "../../ToolTip/ToolTip";
+import { json } from "stream/consumers";
 
 interface PlayerProps {
   isPlaying: boolean;
@@ -42,7 +43,7 @@ const Player: React.FC<PlayerProps> = ({
   const userDataCtx = React.useContext(userDataContext);
   const [isAdding, setIsAdding] = React.useState(false);
   const [volume, setVolume] = React.useState(
-    JSON.parse(localStorage.getItem("volume") || ".5")
+    JSON.parse(localStorage.getItem("volume") || "0.5")
   );
 
   React.useEffect(() => {
