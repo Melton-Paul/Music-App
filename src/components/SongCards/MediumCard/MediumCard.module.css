@@ -46,6 +46,18 @@
 .medium-card:hover {
   background: rgba(122, 113, 113, 0.3);
 }
+
+.playlist-add {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  color: white;
+  text-align: right;
+  margin-bottom: auto;
+}
+
+.playlist-add:hover {
+  opacity: 1;
+}
 @media screen and (min-width: 768px) {
   .medium-card {
     max-width: 220px;

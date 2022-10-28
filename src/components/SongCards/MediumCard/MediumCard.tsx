@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./MediumCard.module.css";
 import userDataContext from "../../../store/userData-context";
+import AddToPlaylist from "../../Playlists/AddPlaylist/AddToPlaylist";
 const play = require("../../../images/play-circle.png");
 
 const MediumCard: React.FC<{
@@ -12,11 +13,13 @@ const MediumCard: React.FC<{
   mp3: string;
 }> = (props) => {
   const [isHovered, setIsHovered] = React.useState(false);
+  const [isAdding, setIsAdding] = React.useState(false);
   const userDataCtx = React.useContext(userDataContext);
   const { name, img, desc } = props;
 
   function handleMouseLeave() {
     setIsHovered(false);
+    setIsAdding(false);
   }
   function handleMouseEnter() {
     setIsHovered(true);
@@ -46,6 +49,14 @@ const MediumCard: React.FC<{
       </div>
       <h3 className={styles.text}>{name}</h3>
       <p className={styles.desc}>{desc}</p>
+      {isHovered && !isAdding && (
+        <p className={styles["playlist-add"]} onClick={() => setIsAdding(true)}>
+          Add to Playlist
+        </p>
+      )}
+      {isAdding && isHovered && (
+        <AddToPlaylist song={props} setIsAdding={setIsAdding} />
+      )}
     </article>
   );
 };

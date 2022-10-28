@@ -30,12 +30,15 @@ function App() {
   const style = {
     height: userDataCtx.song.name === "" ? "100vh" : "92vh",
   };
+  const contentStyle = {
+    paddingBottom: userDataCtx.song.name !== "" ? "20rem" : "2rem",
+  };
 
   return (
     <>
       <main style={style}>
         <Navbar />
-        <div className="content" ref={scrollRef}>
+        <div className="content" ref={scrollRef} style={contentStyle}>
           <Topbar scroll={scroll} />
           <div className="content-lower">
             <Routes>

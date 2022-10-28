@@ -23,6 +23,7 @@ body {
     rgba(18, 18, 18, 1) 69%,
     rgba(46, 6, 6, 0.975) 100%
   );
+  cursor: default;
 }
 
 code {

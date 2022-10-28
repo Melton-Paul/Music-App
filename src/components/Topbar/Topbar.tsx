@@ -28,7 +28,7 @@ const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
       {!authCtx.userId ? (
         <Link to="login">
           <button className={styles["profile-button"] + " " + styles.link}>
-            Sign In
+            Log In
           </button>
         </Link>
       ) : (

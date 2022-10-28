@@ -3,6 +3,7 @@ import SmallCard from "../SongCards/SmallCard/SmallCard";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { useNavigate } from "react-router";
 import userDataContext from "../../store/userData-context";
+import styles from "./IndvPlaylist.module.css";
 
 const IndvPlaylist: React.FC<{
   cover: string;
@@ -68,7 +69,9 @@ const IndvPlaylist: React.FC<{
         />
       </div>
       {isHovered && !askDelete && (
-        <button onClick={toggleDelete}>Remove</button>
+        <button className={styles["delete-button"]} onClick={toggleDelete}>
+          Remove
+        </button>
       )}
     </div>
   );

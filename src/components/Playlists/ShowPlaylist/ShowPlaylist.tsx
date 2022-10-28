@@ -28,6 +28,7 @@ const ShowPlaylist = () => {
         onClick={() => {
           userDataCtx.removeSong(song.id);
         }}
+        className={styles.button}
       >
         Remove
       </button>
@@ -60,8 +61,12 @@ const ShowPlaylist = () => {
           {userDataCtx.currentView.name}
         </h2>
         <div className={styles["button-container"]}>
-          <button onClick={toggleDelete}>Delete Playlist</button>
-          <button onClick={startPlaylist}>Start Playlist</button>
+          <button className={styles.button} onClick={toggleDelete}>
+            Delete Playlist
+          </button>
+          <button className={styles.button} onClick={startPlaylist}>
+            Start Playlist
+          </button>
         </div>
       </div>
       {playlistHtml}
