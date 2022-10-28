@@ -1,4 +1,5 @@
 import React from "react";
+import ToolTip from "../../../ToolTip/ToolTip";
 import styles from "./Volume.module.css";
 
 const Volume: React.FC<{
@@ -29,13 +30,15 @@ const Volume: React.FC<{
 
   return (
     <section className={styles["volume-changer"]}>
-      <i
-        className={
-          isMuted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high"
-        }
-        aria-label="Change the volume"
-        onClick={handleMute}
-      ></i>
+      <ToolTip content={isMuted ? "Unmute" : "Mute"}>
+        <i
+          className={
+            isMuted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high"
+          }
+          aria-label="Change the volume"
+          onClick={handleMute}
+        ></i>
+      </ToolTip>
       {!isMuted && (
         <div
           className={styles["progress_bar-outer"]}

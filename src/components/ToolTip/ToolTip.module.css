@@ -1,0 +1,29 @@
+.Tooltip-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.Tooltip-tip {
+  position: absolute;
+  border-radius: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  color: var(--tooltip-text-color);
+  background: var(--tooltip-background-color);
+  font-size: 14px;
+  font-family: sans-serif;
+  line-height: 1;
+  z-index: 100;
+  white-space: nowrap;
+  display: flex;
+  box-shadow: 2px 3px 10px 1px rgb(22, 19, 19);
+}
+
+.Tooltip-tip.top {
+  top: calc(var(--tooltip-margin) * -1);
+}
+.Tooltip-tip.top::before {
+  top: 100%;
+  border-top-color: var(--tooltip-background-color);
+}

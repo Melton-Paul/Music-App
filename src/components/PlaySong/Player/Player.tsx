@@ -3,6 +3,7 @@ import styles from "./Player.module.css";
 import userDataContext from "../../../store/userData-context";
 import AddToPlaylist from "../../Playlists/AddPlaylist/AddToPlaylist";
 import Volume from "./Volume/Volume";
+import ToolTip from "../../ToolTip/ToolTip";
 
 interface PlayerProps {
   isPlaying: boolean;
@@ -127,42 +128,52 @@ const Player: React.FC<PlayerProps> = ({
       <div className={styles["control-container"]}>
         <div className={styles["control-group"]}>
           <div className={styles.controls}>
-            <i
-              className="fa-solid fa-repeat"
-              aria-label="Repeat current song"
-              onClick={toggleRepeat}
-              style={repeatStyle}
-            ></i>
-            <i
-              className="fa-solid fa-backward"
-              aria-label="Go to previous song"
-              onClick={() => {
-                changeSong("back");
-              }}
-            ></i>
-            <i
-              className={
-                isPlaying
-                  ? "fa-solid fa-circle-pause"
-                  : "fa-solid fa-circle-play"
-              }
-              style={{ fontSize: "4rem" }}
-              onClick={togglePlaying}
-              aria-label={isPlaying ? "Pause Song" : "Play song"}
-            ></i>
-            <i
-              className="fa-solid fa-forward"
-              aria-label="Go to next song"
-              onClick={() => {
-                changeSong("forward");
-              }}
-            ></i>
-            <i
-              className="fa-solid fa-shuffle"
-              aria-label="Shuffle playlist"
-              onClick={shufflePlaylist}
-              style={shuffleStyle}
-            ></i>
+            <ToolTip content="Repeat Song">
+              <i
+                className="fa-solid fa-repeat"
+                aria-label="Repeat current song"
+                onClick={toggleRepeat}
+                style={repeatStyle}
+              ></i>
+            </ToolTip>
+            <ToolTip content="Previous Song">
+              <i
+                className="fa-solid fa-backward"
+                aria-label="Go to previous song"
+                onClick={() => {
+                  changeSong("back");
+                }}
+              ></i>
+            </ToolTip>
+            <ToolTip content={isPlaying ? "Pause Song" : "Play Song"}>
+              <i
+                className={
+                  isPlaying
+                    ? "fa-solid fa-circle-pause"
+                    : "fa-solid fa-circle-play"
+                }
+                style={{ fontSize: "4rem" }}
+                onClick={togglePlaying}
+                aria-label={isPlaying ? "Pause Song" : "Play song"}
+              ></i>
+            </ToolTip>
+            <ToolTip content="Next Song">
+              <i
+                className="fa-solid fa-forward"
+                aria-label="Go to next song"
+                onClick={() => {
+                  changeSong("forward");
+                }}
+              ></i>
+            </ToolTip>
+            <ToolTip content="Shuffle Songs">
+              <i
+                className="fa-solid fa-shuffle"
+                aria-label="Shuffle playlist"
+                onClick={shufflePlaylist}
+                style={shuffleStyle}
+              ></i>
+            </ToolTip>
           </div>
           <div className={styles.progress_bar}>
             <p className={styles["progress_bar-time"]}>

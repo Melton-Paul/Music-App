@@ -24,6 +24,10 @@ body {
     rgba(46, 6, 6, 0.975) 100%
   );
   cursor: default;
+  --tooltip-text-color: white;
+  --tooltip-background-color: rgb(41, 33, 33);
+  --tooltip-margin: 40px;
+  --tooltip-arrow-size: 6px;
 }
 
 code {
