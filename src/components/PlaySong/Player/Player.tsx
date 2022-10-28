@@ -4,7 +4,6 @@ import userDataContext from "../../../store/userData-context";
 import AddToPlaylist from "../../Playlists/AddPlaylist/AddToPlaylist";
 import Volume from "./Volume/Volume";
 import ToolTip from "../../ToolTip/ToolTip";
-import { json } from "stream/consumers";
 
 interface PlayerProps {
   isPlaying: boolean;
