@@ -53,7 +53,7 @@ const SmallCard: React.FC<{
           className={styles.play}
           src={play}
           alt="Play song"
-          onClick={handleClick}
+          onClick={!shouldNotPlay ? () => {} : handleClick}
         />
       )}
     </article>
