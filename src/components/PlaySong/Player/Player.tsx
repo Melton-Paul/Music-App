@@ -42,7 +42,7 @@ const Player: React.FC<PlayerProps> = ({
   const userDataCtx = React.useContext(userDataContext);
   const [isAdding, setIsAdding] = React.useState(false);
   const [volume, setVolume] = React.useState(
-    JSON.parse(localStorage.getItem("volume") || "1")
+    JSON.parse(localStorage.getItem("volume") || ".5")
   );
 
   React.useEffect(() => {
