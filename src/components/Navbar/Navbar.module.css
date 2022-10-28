@@ -31,6 +31,7 @@
   color: rgb(177, 172, 172);
   z-index: 5;
   transition: 0.5s all;
+  box-shadow: 2px 3px 7px 1px rgb(27, 16, 16);
 }
 .navbar .expand {
   max-width: 25px;
@@ -54,8 +55,6 @@
   max-height: 100vh;
   margin: 0;
   margin-top: 1rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #3d3535;
 }
 
 .navbar-list li {
@@ -123,16 +122,15 @@
 }
 
 .nav-copyright {
+  display: none;
   font-weight: bold;
   margin-top: 1rem;
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
 .nav-copyright p {
   opacity: 0.5;
   margin: 0;
-  margin-bottom: 0.5rem;
   font-size: 1rem;
 }
 
@@ -159,6 +157,8 @@
   .navbar-list {
     width: auto;
     align-items: flex-start;
+    border-bottom: 1px solid #3d3535;
+    padding-bottom: 2rem;
   }
   .navbar-list li {
     padding: 0.75rem 1rem;
@@ -166,6 +166,7 @@
     border-top: none;
     text-align: left;
   }
+
   .expand {
     display: none;
   }
@@ -176,5 +177,8 @@
   }
   .playlists {
     display: initial;
+  }
+  .nav-copyright {
+    display: flex;
   }
 }

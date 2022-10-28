@@ -23,6 +23,7 @@
 }
 .text {
   color: white;
+  padding-left: 2rem;
 }
 .name {
   font-size: 1.6rem;
@@ -121,5 +122,8 @@
   }
   .control-group {
     width: 100%;
+  }
+  .text {
+    padding-left: 0;
   }
 }

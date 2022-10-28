@@ -75,12 +75,6 @@ const Navbar = () => {
             </Link>
           )}
         </li>
-        <li className={styles["nav-copyright"]}>
-          <p>Created by Paul Melton</p>
-          <a href="https://paulcmelton.com" target="_blank" rel="noreferrer">
-            PaulCMelton.com
-          </a>
-        </li>
       </ul>
       {userDataCtx.playlists.length > 0 && (
         <div className={styles.playlists}>
@@ -88,6 +82,12 @@ const Navbar = () => {
           <ul className={styles["playlist-list"]}>{playlistHtml}</ul>
         </div>
       )}
+      <div className={styles["nav-copyright"]}>
+        <p>Created by Paul Melton</p>
+        <a href="https://paulcmelton.com" target="_blank" rel="noreferrer">
+          PaulCMelton.com
+        </a>
+      </div>
     </nav>
   );
 };
