@@ -38,6 +38,7 @@
   max-width: 50px;
   width: 100%;
   cursor: pointer;
+  transition: all 0.3s;
 }
 .expand:hover {
   opacity: 0.7;

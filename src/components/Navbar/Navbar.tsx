@@ -22,6 +22,10 @@ const Navbar = () => {
     userDataCtx.setView(name, songs);
   }
 
+  const collapsedStyling = {
+    transform: isExpanded ? "rotate(180deg)" : "rotate(0)",
+  };
+
   const playlistHtml = userDataCtx.playlists.map((playlist) => (
     <Link to="/playlist" key={playlist.name}>
       <li
@@ -45,6 +49,7 @@ const Navbar = () => {
         className={styles.expand}
         src={expand}
         alt="Expand navbar content"
+        style={collapsedStyling}
       />
       <ul
         className={`${styles["navbar-list"]} ${
