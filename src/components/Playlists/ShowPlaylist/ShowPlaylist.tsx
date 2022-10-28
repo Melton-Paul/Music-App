@@ -15,7 +15,7 @@ const ShowPlaylist = () => {
   }
 
   const playlistHtml = userDataCtx.currentView.songs.map((song) => (
-    <div>
+    <div onClick={() => userDataCtx.playSong(song)}>
       <SmallCard
         img={song.img}
         name={song.name}

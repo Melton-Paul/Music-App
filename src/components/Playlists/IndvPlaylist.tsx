@@ -43,7 +43,11 @@ const IndvPlaylist: React.FC<{
   }
 
   return (
-    <div onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+    <div
+      className={styles.playlist}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
       <div
         style={{ position: "relative" }}
         onClick={() => {
@@ -66,6 +70,7 @@ const IndvPlaylist: React.FC<{
           artist={""}
           mp3={""}
           queue={songs}
+          shouldNotPlay={true}
         />
       </div>
       {isHovered && !askDelete && (

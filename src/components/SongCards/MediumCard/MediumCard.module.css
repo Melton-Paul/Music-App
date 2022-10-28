@@ -6,7 +6,6 @@
   border-radius: 5px;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   z-index: 1;
   transition: all 0.3s;
   color: white;
@@ -38,6 +37,7 @@
   bottom: 15px;
   right: 10px;
   width: 50px;
+  cursor: pointer;
 }
 .play:hover {
   transform: scale(1.1);
@@ -53,6 +53,14 @@
   color: white;
   text-align: right;
   margin-bottom: auto;
+  cursor: pointer;
+  position: absolute;
+  background: rgb(53, 54, 53);
+  top: 0;
+  left: 15px;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  box-shadow: 2px 3px 10px 1px rgb(22, 19, 19);
 }
 
 .playlist-add:hover {

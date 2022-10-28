@@ -94,11 +94,17 @@ export const UserDataContextProvider: React.FC<{
   }
 
   function addPlaylist(name: string, song: song) {
-    if (playlists.some((playlist) => playlist.name === name)) {
+    if (
+      playlists.some(
+        (playlist) => playlist.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
       setPlaylists((prev) => {
         return prev.map((playlist) => {
-          return playlist.name === name
-            ? playlist.songs.includes(song)
+          return playlist.name.toLowerCase() === name.toLowerCase()
+            ? playlist.songs.some(
+                (playlistSong) => playlistSong.name === song.name
+              )
               ? playlist
               : { ...playlist, songs: [...playlist.songs, song] }
             : playlist;

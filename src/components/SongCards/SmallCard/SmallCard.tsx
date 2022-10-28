@@ -18,10 +18,11 @@ const SmallCard: React.FC<{
     artist: string;
     mp3: string;
   }[];
+  shouldNotPlay?: boolean;
 }> = (props) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const userDataCtx = React.useContext(userDataContext);
-  const { name, img, queue } = props;
+  const { name, img, queue, shouldNotPlay = false } = props;
 
   function handleMouseLeave() {
     setIsHovered(false);
@@ -43,6 +44,7 @@ const SmallCard: React.FC<{
       className={styles["small-card"]}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={!shouldNotPlay ? handleClick : () => {}}
     >
       <img className={styles.album} src={img} alt={`${img} song`} />
       <h3 className={styles.text}>{name}</h3>

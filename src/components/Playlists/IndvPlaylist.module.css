@@ -1,3 +1,7 @@
+.playlist {
+  cursor: pointer;
+}
+
 .delete-button {
   padding: 0.5rem;
   background: #5c5c5c;

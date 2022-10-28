@@ -6,10 +6,10 @@
   border-radius: 5px;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   z-index: 1;
   transition: all 0.3s;
   margin: 0.5rem 0;
+  cursor: pointer;
 }
 
 .small-card .text {
