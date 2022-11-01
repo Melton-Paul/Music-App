@@ -2,6 +2,7 @@ import React from "react";
 import authContext from "../../store/auth-context";
 import { useNavigate } from "react-router";
 import styles from "./Auth.module.css";
+import ToolTip from "../ToolTip/ToolTip";
 
 export default function Auth() {
   const [userDetails, setUserDetails] = React.useState({
@@ -71,6 +72,14 @@ export default function Auth() {
       .catch((err) => console.log(err));
   }
 
+  function autoLog() {
+    setUserDetails({
+      user: "test@hotmail.com",
+      pass: "test1234",
+    });
+    handleSubmit();
+  }
+
   return (
     <div className={styles.auth}>
       <h2>{isLogin ? "Welcome Back" : "Sign Up"}</h2>
@@ -108,9 +117,17 @@ export default function Auth() {
             <p className={styles.warning}>Passwords must match</p>
           )}
       </form>
-      <button className={styles.submit} onClick={handleSubmit}>
-        {isLogin ? "Log In" : "Create Account"}
-      </button>
+      <div className={styles["button-container"]}>
+        <button className={styles.submit} onClick={handleSubmit}>
+          {isLogin ? "Log In" : "Create Account"}
+        </button>
+        <div className={styles["autofill-container"]}>
+          <button onClick={autoLog}>Autofill Developer Info</button>
+          <ToolTip content="Test log in information for ease-of use testing purposes">
+            <i className="fa-solid fa-circle-question"></i>
+          </ToolTip>
+        </div>
+      </div>
       <p className={styles.toggle} onClick={() => setIsLogin((prev) => !prev)}>
         {isLogin ? "Create New Account" : "Log in with existing account"}
       </p>

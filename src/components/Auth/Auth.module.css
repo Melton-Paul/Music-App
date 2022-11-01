@@ -55,3 +55,27 @@
 .toggle:hover {
   opacity: 0.7;
 }
+
+.button-container {
+  display: flex;
+}
+
+.autofill-container {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  color: white;
+  margin-left: 1rem;
+}
+.autofill-container button {
+  margin-right: 1rem;
+  background: tan;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.autofill-container button:hover {
+  opacity: 0.9;
+}
