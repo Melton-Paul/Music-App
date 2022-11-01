@@ -49,8 +49,8 @@ function App() {
               {!authCtx.isLoggedIn && (
                 <Route path="/login" element={<Auth />} />
               )}
-              <Route path="*" element={<MainPage />} />
               <Route path="/search" element={<SearchPage />} />
+              <Route path="*" element={<MainPage />} />
             </Routes>
           </div>
         </div>
