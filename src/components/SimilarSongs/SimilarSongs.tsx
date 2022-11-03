@@ -8,10 +8,25 @@ import { Link } from "react-router-dom";
 export default function SimilarSongs() {
   const songCtx = React.useContext(songContext);
   const userDataCtx = React.useContext(userDataContext);
+  const [width, setWidth] = React.useState(getWidth());
 
+  React.useEffect(() => {
+    function handleResize() {
+      setWidth(getWidth());
+    }
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  console.log(width);
   const temp = [...songCtx.songs];
   const songArr =
-    userDataCtx.recents.length > 0 ? temp.splice(0, 8) : songCtx.songs;
+    userDataCtx.recents.length > 0
+      ? width > 1399
+        ? songCtx.songs
+        : temp.splice(0, 9)
+      : songCtx.songs;
 
   const songHtml = songArr.map((song) => (
     <MediumCard
@@ -24,6 +39,10 @@ export default function SimilarSongs() {
       mp3={song.mp3}
     />
   ));
+
+  function getWidth() {
+    return window.innerWidth;
+  }
 
   return (
     <section className={styles["similar-page"]}>
