@@ -19,7 +19,6 @@ export default function SimilarSongs() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  console.log(width);
   const temp = [...songCtx.songs];
   const songArr =
     userDataCtx.recents.length > 0
@@ -39,6 +38,14 @@ export default function SimilarSongs() {
       mp3={song.mp3}
     />
   ));
+  const style = {
+    height:
+      userDataCtx.recents.length > 0
+        ? width > 1399
+          ? "630px"
+          : "auto"
+        : "auto",
+  };
 
   function getWidth() {
     return window.innerWidth;
@@ -58,7 +65,9 @@ export default function SimilarSongs() {
           </Link>
         )}
       </div>
-      <article className={styles.similarSongs}>{songHtml}</article>
+      <article className={styles.similarSongs} style={style}>
+        {songHtml}
+      </article>
     </section>
   );
 }

@@ -53,13 +53,18 @@ const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
       {authCtx.isLoggedIn && isShowing && (
         <div className={styles.modal}>
           <ul className={styles["profile-list"]}>
-            <li>
-              <Link to="account">Account</Link>
+            <Link to="account">
+              <li>Account</li>
+            </Link>
+            <Link to="settings">
+              <li>Settings</li>
+            </Link>
+            <li
+              onClick={() => authCtx.logOut()}
+              className={styles["profile-list_logout"]}
+            >
+              Log Out
             </li>
-            <li>
-              <Link to="settings">Settings</Link>
-            </li>
-            <li onClick={() => authCtx.logOut()}>Log Out</li>
           </ul>
         </div>
       )}

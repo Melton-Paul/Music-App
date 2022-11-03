@@ -32,6 +32,7 @@ const userDataContext = React.createContext({
   addPlaylist: (name: string, song: song) => {},
   removePlaylist: (name: string) => {},
   removeSong: (songId: string) => {},
+  resetData: () => {},
 });
 
 let firstRender = true;
@@ -144,6 +145,11 @@ export const UserDataContextProvider: React.FC<{
       songs: prev.songs.filter((song) => song.id !== songId),
     }));
   }
+  function resetData() {
+    setRecentlyPlayed([]);
+    setPlaylists([]);
+    setSong(songIntitial);
+  }
 
   React.useEffect(() => {
     if (authCtx.userId || firstRender) {
@@ -157,7 +163,12 @@ export const UserDataContextProvider: React.FC<{
   }, [authCtx.userId]);
 
   React.useEffect(() => {
-    if (!authCtx.userId || firstRender || recentlyPlayed.length === 0) {
+    if (
+      !authCtx.userId ||
+      firstRender ||
+      recentlyPlayed.length === 0 ||
+      authCtx.isDeveloper
+    ) {
       return;
     }
 
@@ -210,6 +221,7 @@ export const UserDataContextProvider: React.FC<{
     addPlaylist,
     removePlaylist,
     removeSong,
+    resetData,
     currentPlaylist,
     currentView,
     playSong,

@@ -14,12 +14,14 @@ export default function Auth() {
     isTouched: false,
   });
   const [isLogin, setIsLogin] = React.useState(true);
+  const [error, setError] = React.useState("");
   const authCtx = React.useContext(authContext);
   const navigate = useNavigate();
 
   function handleChange(e: any) {
     const { name, value } = e.target;
     setUserDetails((prev) => ({ ...prev, [name]: value }));
+    setError("");
   }
 
   function confirmPassChange(e: any) {
@@ -69,7 +71,10 @@ export default function Auth() {
         authCtx.logIn(data.localId, data.idToken, expirationTime.toISOString());
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError("We could not log you in with this information");
+        console.log(err);
+      });
   }
 
   function autoLog() {
@@ -121,13 +126,16 @@ export default function Auth() {
         <button className={styles.submit} onClick={handleSubmit}>
           {isLogin ? "Log In" : "Create Account"}
         </button>
-        <div className={styles["autofill-container"]}>
-          <button onClick={autoLog}>Autofill Developer Info</button>
-          <ToolTip content="Test log in information for ease-of use testing purposes">
-            <i className="fa-solid fa-circle-question"></i>
-          </ToolTip>
-        </div>
+        {isLogin && (
+          <div className={styles["autofill-container"]}>
+            <button onClick={autoLog}>Autofill Developer Info</button>
+            <ToolTip content="Test log in information for ease-of use testing purposes">
+              <i className="fa-solid fa-circle-question"></i>
+            </ToolTip>
+          </div>
+        )}
       </div>
+      {error && isLogin && <p className={styles.warning}>{error}</p>}
       <p className={styles.toggle} onClick={() => setIsLogin((prev) => !prev)}>
         {isLogin ? "Create New Account" : "Log in with existing account"}
       </p>

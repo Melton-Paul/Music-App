@@ -9,6 +9,7 @@ import userDataContext from "./store/userData-context";
 import ShowPlaylist from "./components/Playlists/ShowPlaylist/ShowPlaylist";
 import Topbar from "./components/Topbar/Topbar";
 import SearchPage from "./components/Search/SearchPage";
+import Account from "./components/Account/Account";
 
 function App() {
   const authCtx = React.useContext(authContext);
@@ -48,6 +49,9 @@ function App() {
               <Route path="/" element={<MainPage />} />
               {!authCtx.isLoggedIn && (
                 <Route path="/login" element={<Auth />} />
+              )}
+              {authCtx.isLoggedIn && (
+                <Route path="/account" element={<Account />} />
               )}
               <Route path="/search" element={<SearchPage />} />
               <Route path="*" element={<MainPage />} />

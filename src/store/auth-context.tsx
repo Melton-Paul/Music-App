@@ -3,6 +3,7 @@ import React from "react";
 const authContext = React.createContext({
   userId: "",
   logIn: (userId: string, token: string, exptime: string) => {},
+  isDeveloper: false,
   logOut: () => {},
   isLoggedIn: false,
 });
@@ -47,6 +48,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = (
   }
   const [userId, setUserId] = React.useState(intitalUser || "");
   const [token, setToken] = React.useState(intitalToken);
+  const [isDeveloper, setIsDeveloper] = React.useState(false);
   const isLoggedIn = !!token;
 
   function logOut() {
@@ -66,6 +68,13 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = (
     const timeTilExpire = calcTime(exptime);
     logoutTimer = setTimeout(logOut, timeTilExpire);
   }
+  React.useEffect(() => {
+    if (userId === "NGYVNsxPYzOZSpXVYDRYXgRMUt63") {
+      setIsDeveloper(true);
+    } else {
+      setIsDeveloper(false);
+    }
+  }, [userId]);
 
   React.useEffect(() => {
     if (data?.remainingTime) {
@@ -74,7 +83,9 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = (
   }, [data?.remainingTime]);
 
   return (
-    <authContext.Provider value={{ userId, logIn, logOut, isLoggedIn }}>
+    <authContext.Provider
+      value={{ userId, logIn, logOut, isLoggedIn, isDeveloper }}
+    >
       {props.children}
     </authContext.Provider>
   );
