@@ -179,7 +179,7 @@ export const UserDataContextProvider: React.FC<{
         body: JSON.stringify({ recents: recentlyPlayed, playlists: playlists }),
       }
     );
-  }, [authCtx.userId, recentlyPlayed, playlists]);
+  }, [authCtx.userId, recentlyPlayed, playlists, authCtx.isDeveloper]);
 
   React.useEffect(() => {
     if (!authCtx.userId || !firstRender) {
