@@ -82,7 +82,6 @@ export default function Auth() {
       user: "test@hotmail.com",
       pass: "test1234",
     });
-    handleSubmit();
   }
 
   return (
@@ -128,7 +127,7 @@ export default function Auth() {
         </button>
         {isLogin && (
           <div className={styles["autofill-container"]}>
-            <button onClick={autoLog}>Autofill Developer Info</button>
+            <button onClick={autoLog}>Autofill Test Account Info</button>
             <ToolTip content="Test log in information for ease-of use testing purposes">
               <i className="fa-solid fa-circle-question"></i>
             </ToolTip>
