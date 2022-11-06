@@ -55,7 +55,7 @@ main {
   position: relative;
 }
 .content-lower {
-  padding-top: 8rem;
+  padding-top: 5rem;
   padding-left: 3rem;
   padding-right: 3rem;
 }
@@ -82,7 +82,18 @@ main {
   background: rgb(49, 46, 46);
 }
 
+
+@media screen and (max-width: 500px){
+  .content-lower {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 @media screen and (min-width: 768px) {
+  .content-lower {
+    padding-top: 7rem;
+  }
   .sidebar {
     display: block;
     max-width: 250px;

@@ -25,6 +25,14 @@
   text-decoration: underline;
 }
 
+
+/* @media screen and (max-width: 500px){
+  .similarSongs {
+    display:  flex;
+    flex-wrap: wrap;
+  }
+} */
+
 @media screen and (max-width: 800px) {
   .similarSongs {
     grid-template-columns: repeat(2, 1fr);
