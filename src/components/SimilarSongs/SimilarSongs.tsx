@@ -24,7 +24,7 @@ export default function SimilarSongs() {
     userDataCtx.recents.length > 0
       ? width > 1399
         ? songCtx.songs
-        : temp.splice(0, 9)
+        : temp.splice(0, 8)
       : songCtx.songs;
 
   const songHtml = songArr.map((song) => (
