@@ -75,6 +75,7 @@
   border: none;
   font-weight: bold;
   cursor: pointer;
+  color:  black;
 }
 .autofill-container button:hover {
   opacity: 0.9;

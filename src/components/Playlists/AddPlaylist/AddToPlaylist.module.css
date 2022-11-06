@@ -2,3 +2,6 @@
   left: 15.5%;
   z-index: 2;
 }
+.addplaylist-container button {
+  color: black;
+}
