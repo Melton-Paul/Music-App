@@ -67,7 +67,7 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 495px) {
   .medium-card{
     max-width: 170px;
     width: 100%;
