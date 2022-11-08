@@ -145,7 +145,7 @@
   opacity: 1;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 880px) {
   .navbar {
     flex-wrap: nowrap;
     position: static;
