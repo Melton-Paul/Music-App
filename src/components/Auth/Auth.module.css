@@ -80,3 +80,8 @@
 .autofill-container button:hover {
   opacity: 0.9;
 }
+
+.loading {
+  max-width: 25px;
+  margin: 0 auto;
+}

@@ -3,6 +3,7 @@ import authContext from "../../store/auth-context";
 import { useNavigate } from "react-router";
 import styles from "./Auth.module.css";
 import ToolTip from "../ToolTip/ToolTip";
+const loadingGif = require("../../images/loading1.gif")
 
 export default function Auth() {
   const [userDetails, setUserDetails] = React.useState({
@@ -15,6 +16,7 @@ export default function Auth() {
   });
   const [isLogin, setIsLogin] = React.useState(true);
   const [error, setError] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false)
   const authCtx = React.useContext(authContext);
   const navigate = useNavigate();
 
@@ -46,6 +48,7 @@ export default function Auth() {
       apiCall =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAasBNs63AV_6TlQIsEbmOQZa_ffeo9qn0";
     }
+    setIsLoading(true)
 
     fetch(apiCall, {
       method: "POST",
@@ -70,9 +73,11 @@ export default function Auth() {
         );
         authCtx.logIn(data.localId, data.idToken, expirationTime.toISOString());
         navigate("/");
+        setIsLoading(false)
       })
       .catch((err) => {
         setError("We could not log you in with this information");
+        setIsLoading(false)
         console.log(err);
       });
   }
@@ -122,7 +127,9 @@ export default function Auth() {
           )}
       </form>
       <div className={styles["button-container"]}>
-        <button className={styles.submit} onClick={handleSubmit}>
+        {isLoading ? <img src={loadingGif} alt="loading" className={styles.loading}/> :
+      <>
+          <button className={styles.submit} onClick={handleSubmit}>
           {isLogin ? "Log In" : "Create Account"}
         </button>
         {isLogin && (
@@ -133,6 +140,8 @@ export default function Auth() {
             </ToolTip>
           </div>
         )}
+        </>
+      }
       </div>
       {error && isLogin && <p className={styles.warning}>{error}</p>}
       <p className={styles.toggle} onClick={() => setIsLogin((prev) => !prev)}>
