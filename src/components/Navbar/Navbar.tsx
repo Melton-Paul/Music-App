@@ -22,6 +22,7 @@ const Navbar = () => {
     userDataCtx.setView(name, songs);
   }
 
+
   const collapsedStyling = {
     transform: isExpanded ? "rotate(180deg)" : "rotate(0)",
   };
@@ -40,7 +41,7 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      <Link to="/" className={styles["logo-container"]}>
+      <Link to="/" className={styles["logo-container"]} >
         <img src={logo} alt="" width="60px" height="50px" />
         <p>Music App</p>
       </Link>
@@ -56,19 +57,19 @@ const Navbar = () => {
           !isExpanded ? styles.collapsed : ""
         }`}
       >
-        <li>
+        <li onClick={toggleExpanded}>
           <Link to="/">
             <i className="fa-solid fa-house"></i>
             Home
           </Link>
         </li>
-        <li>
+        <li onClick={toggleExpanded}>
           <Link to="search">
             <i className="fa-solid fa-magnifying-glass"></i>
             Search
           </Link>
         </li>
-        <li>
+        <li onClick={toggleExpanded}>
           {authCtx.isLoggedIn ? (
             <button className={styles.logOut} onClick={logOut}>
               Log Out
