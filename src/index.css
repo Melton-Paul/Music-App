@@ -24,6 +24,7 @@ body {
     rgba(18, 18, 18, 1) 69%,
     rgba(46, 6, 6, 0.975) 100%
   );
+  scroll-behavior: smooth;
   cursor: default;
   --tooltip-text-color: white;
   --tooltip-background-color: rgb(41, 33, 33);
@@ -54,6 +55,7 @@ main {
   padding-top: 5rem;
   flex-grow: 1;
   position: relative;
+  scroll-behavior: smooth;
 }
 .content-lower {
   padding-top: 5rem;
@@ -83,8 +85,7 @@ main {
   background: rgb(49, 46, 46);
 }
 
-
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
   .content-lower {
     padding-left: 2rem;
     padding-right: 2rem;

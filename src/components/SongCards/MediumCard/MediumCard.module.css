@@ -71,8 +71,8 @@
 }
 
 @media screen and (max-width: 495px) {
-  .medium-card{
-    max-width: 170px;
+  .medium-card {
+    max-width: 15px;
     width: 100%;
   }
 }

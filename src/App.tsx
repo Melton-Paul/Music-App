@@ -10,10 +10,13 @@ import ShowPlaylist from "./components/Playlists/ShowPlaylist/ShowPlaylist";
 import Topbar from "./components/Topbar/Topbar";
 import SearchPage from "./components/Search/SearchPage";
 import Account from "./components/Account/Account";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const authCtx = React.useContext(authContext);
   const userDataCtx = React.useContext(userDataContext);
+  const { pathname } = useLocation();
   const [scroll, setScroll] = React.useState(0);
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
@@ -34,6 +37,10 @@ function App() {
   const contentStyle = {
     paddingBottom: userDataCtx.song.name !== "" ? "20rem" : "3rem",
   };
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>
