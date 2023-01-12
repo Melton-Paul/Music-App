@@ -1,11 +1,10 @@
 .search-input {
-  z-index: 4;
+  z-index: 9;
   display: flex;
   align-items: center;
   background-color: white;
   border-radius: 230px;
-  max-width: 200px;
-  width: 100%;
+  flex-grow: 2;
   overflow: hidden;
   padding: 1rem 1.5rem;
   color: black;
@@ -26,9 +25,9 @@
 }
 
 @media screen and (min-width: 768px) {
-  .search-input {
+  /* .search-input {
     position: fixed;
     top: 18px;
     max-width: 350px;
-  }
+  } */
 }

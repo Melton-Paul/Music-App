@@ -52,10 +52,6 @@ const ShowPlaylist = () => {
           cancelFunction={toggleDelete}
         />
       )}
-      <Link to="/" className={styles["back-button"]}>
-        <i className="fa-solid fa-arrow-left"></i>
-        <span>Go back</span>
-      </Link>
       <div className={styles.header}>
         <h2 className={styles["playlist-name"]}>
           {userDataCtx.currentView.name}

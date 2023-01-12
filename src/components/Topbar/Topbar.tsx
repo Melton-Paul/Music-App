@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "./Topbar.module.css";
 import authContext from "../../store/auth-context";
-import { Link } from "react-router-dom";
+import SearchInput from "../Search/SearchInput";
+import { Link, useLocation } from "react-router-dom";
 
 const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
   const authCtx = React.useContext(authContext);
   const [isShowing, setIsShowing] = React.useState(false);
-
+  const pathName = useLocation();
   function toggleShowing() {
     setIsShowing((prev) => !prev);
   }
+  console.log(pathName);
 
   const style = {
     background:
@@ -68,6 +70,15 @@ const Topbar: React.FC<{ scroll: number }> = ({ scroll }) => {
           </ul>
         </div>
       )}
+      <div className={styles["button-container"]}>
+        {pathName.pathname !== "/" && (
+          <Link to="/" className={styles["back-button"]}>
+            <i className="fa-solid fa-arrow-left"></i>
+            <span>Go back</span>
+          </Link>
+        )}
+        {pathName.pathname === "/search" && <SearchInput />}
+      </div>
     </div>
   );
 };

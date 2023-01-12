@@ -1,15 +1,13 @@
 import React from "react";
-import SearchInput from "./SearchInput";
-import songContext from "../../store/song-context";
-import MediumCard from "../SongCards/MediumCard/MediumCard";
+import SearchInput from "../components/Search/SearchInput";
+import songContext from "../store/song-context";
+import MediumCard from "../components/SongCards/MediumCard/MediumCard";
 import styles from "./SearchPage.module.css";
 
 export default function SearchPage() {
   const songCtx = React.useContext(songContext);
   const songs =
     songCtx.filteredSongs.length > 0 ? songCtx.filteredSongs : songCtx.songs;
-
-  console.log(songCtx.songs);
 
   const songHtml = songs.map((song) => (
     <MediumCard
@@ -24,12 +22,11 @@ export default function SearchPage() {
   ));
 
   return (
-    <div>
+    <>
       <div className={styles["search-header"]}>
         <h2>Search Songs</h2>
-        <SearchInput />
       </div>
       <div className={styles["songs-container"]}>{songHtml}</div>
-    </div>
+    </>
   );
 }

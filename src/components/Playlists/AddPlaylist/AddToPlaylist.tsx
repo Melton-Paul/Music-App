@@ -46,6 +46,7 @@ const AddToPlaylist: React.FC<{
           value={playlistName}
           min="1"
           max="20"
+          autoFocus
         />
         {!playlistValid && isTouched && <p>{error}</p>}
         <button onClick={addPlaylist}>Add Playlist</button>

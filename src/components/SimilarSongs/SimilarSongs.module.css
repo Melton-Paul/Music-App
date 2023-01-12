@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
 }
+.similar-page,
+.similar-page > * {
+  overflow-y: hidden;
+}
+
 .similar-header {
   display: flex;
   justify-content: space-between;
@@ -11,6 +16,7 @@
   display: grid;
   gap: 1rem;
   width: 100%;
+  transition: none;
 }
 .link {
   text-decoration: none;
@@ -25,7 +31,9 @@
   text-decoration: underline;
 }
 
-
+.songItem {
+  height: auto;
+}
 
 @media screen and (max-width: 800px) {
   .similarSongs {

@@ -3,6 +3,7 @@ import styles from "./Navbar.module.css";
 import authContext from "../../store/auth-context";
 import userDataContext from "../../store/userData-context";
 import { Link } from "react-router-dom";
+import { gsap, Power4 } from "gsap";
 const logo = require("../../images/logomusic.png");
 const expand = require("../../images/expand-arrow.png");
 
@@ -22,7 +23,6 @@ const Navbar = () => {
     userDataCtx.setView(name, songs);
   }
 
-
   const collapsedStyling = {
     transform: isExpanded ? "rotate(180deg)" : "rotate(0)",
   };
@@ -39,9 +39,20 @@ const Navbar = () => {
     </Link>
   ));
 
+  React.useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      let mm = gsap.matchMedia();
+      mm.add("(min-width: 880px)", () => {
+        gsap.from("nav", { x: -1000, duration: 2, ease: Power4.easeOut });
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <nav className={styles.navbar}>
-      <Link to="/" className={styles["logo-container"]} >
+    <nav className={`${styles.navbar}`}>
+      <Link to="/" className={styles["logo-container"]}>
         <img src={logo} alt="" width="60px" height="50px" />
         <p>Music App</p>
       </Link>

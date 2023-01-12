@@ -8,10 +8,11 @@ import PlaySong from "./components/PlaySong/PlaySong";
 import userDataContext from "./store/userData-context";
 import ShowPlaylist from "./components/Playlists/ShowPlaylist/ShowPlaylist";
 import Topbar from "./components/Topbar/Topbar";
-import SearchPage from "./components/Search/SearchPage";
+import SearchPage from "./pages/SearchPage";
 import Account from "./components/Account/Account";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import Transition from "./components/Transition/Transition";
 
 function App() {
   const authCtx = React.useContext(authContext);
@@ -48,22 +49,24 @@ function App() {
         <Navbar />
         <div className="content" ref={scrollRef} style={contentStyle}>
           <Topbar scroll={scroll} />
-          <div className="content-lower">
-            <Routes>
-              {userDataCtx.currentView.songs.length > 0 && (
-                <Route path="/playlist" element={<ShowPlaylist />} />
-              )}
-              <Route path="/" element={<MainPage />} />
-              {!authCtx.isLoggedIn && (
-                <Route path="/login" element={<Auth />} />
-              )}
-              {authCtx.isLoggedIn && (
-                <Route path="/account" element={<Account />} />
-              )}
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="*" element={<MainPage />} />
-            </Routes>
-          </div>
+          <Transition>
+            <div className="content-lower">
+              <Routes>
+                {userDataCtx.currentView.songs.length > 0 && (
+                  <Route path="/playlist" element={<ShowPlaylist />} />
+                )}
+                <Route path="/" element={<MainPage />} />
+                {!authCtx.isLoggedIn && (
+                  <Route path="/login" element={<Auth />} />
+                )}
+                {authCtx.isLoggedIn && (
+                  <Route path="/account" element={<Account />} />
+                )}
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="*" element={<MainPage />} />
+              </Routes>
+            </div>
+          </Transition>
         </div>
       </main>
       {(userDataCtx.song.id ||

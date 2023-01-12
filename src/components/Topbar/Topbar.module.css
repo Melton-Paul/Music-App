@@ -86,6 +86,35 @@
   text-decoration: none;
   color: whitesmoke;
 }
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  width: 100%;
+  margin-left: 1.5rem;
+}
+
+.back-button {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 2rem;
+  color: black;
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-right: 3rem;
+}
+.back-button i {
+  max-width: 30px;
+  margin-right: 1rem;
+  transition: all 0.15s;
+}
+.back-button:hover i {
+  transform: translateX(-2px);
+}
+.back-button:hover {
+  opacity: 0.8;
+}
 
 @media screen and (min-width: 768px) {
   .topBar {

@@ -30,7 +30,6 @@
   background: black;
   color: rgb(177, 172, 172);
   z-index: 5;
-  transition: 0.5s all;
   box-shadow: 2px 3px 7px 1px rgb(27, 16, 16);
 }
 .navbar .expand {
@@ -148,7 +147,7 @@
 @media screen and (min-width: 880px) {
   .navbar {
     flex-wrap: nowrap;
-    position: static;
+    position: relative;
     max-width: 250px;
     flex-direction: column;
     justify-content: flex-start;

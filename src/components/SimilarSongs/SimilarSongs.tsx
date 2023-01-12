@@ -3,12 +3,18 @@ import styles from "./SimilarSongs.module.css";
 import MediumCard from "../SongCards/MediumCard/MediumCard";
 import songContext from "../../store/song-context";
 import userDataContext from "../../store/userData-context";
+import { gsap, Power4 } from "gsap";
 import { Link } from "react-router-dom";
 
 export default function SimilarSongs() {
   const songCtx = React.useContext(songContext);
   const userDataCtx = React.useContext(userDataContext);
   const [width, setWidth] = React.useState(getWidth());
+  const containerRef = React.useRef(null);
+
+  function getWidth() {
+    return window.innerWidth;
+  }
 
   React.useEffect(() => {
     function handleResize() {
@@ -17,6 +23,19 @@ export default function SimilarSongs() {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  React.useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.from("article", {
+        y: 3000,
+        duration: 2,
+        stagger: 0.15,
+        ease: Power4.easeOut,
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   const temp = [...songCtx.songs];
@@ -47,14 +66,10 @@ export default function SimilarSongs() {
         : "auto",
   };
 
-  function getWidth() {
-    return window.innerWidth;
-  }
-
   return (
-    <section className={styles["similar-page"]}>
+    <section ref={containerRef} className={styles["similar-page"]}>
       <div className={styles["similar-header"]}>
-        <h2>
+        <h2 className="titleh2">
           {userDataCtx.recents.length > 0
             ? "Similar to what you listen to"
             : "Our Catalog"}

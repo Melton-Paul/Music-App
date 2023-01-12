@@ -38,6 +38,8 @@ code {
 }
 h2 {
   font-size: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
   color: white;
 }
 
@@ -50,7 +52,7 @@ main {
 }
 .content {
   overflow-y: auto;
-  height: 100vh;
+  min-height: 100vh;
   padding-bottom: 30rem;
   padding-top: 5rem;
   flex-grow: 1;
@@ -61,6 +63,7 @@ main {
   padding-top: 5rem;
   padding-left: 3rem;
   padding-right: 3rem;
+  padding-bottom: 30rem;
 }
 
 .sidebar {
