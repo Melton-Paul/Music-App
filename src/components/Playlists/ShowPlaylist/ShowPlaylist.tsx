@@ -15,16 +15,14 @@ const ShowPlaylist = () => {
 
   const playlistHtml = userDataCtx.currentView.songs.map((song) => (
     <div>
-      <div onClick={() => userDataCtx.playSong(song)}>
-        <SmallCard
-          img={song.img}
-          name={song.name}
-          id={song.id}
-          artist={song.artist}
-          mp3={song.mp3}
-          desc={song.desc}
-        />
-      </div>
+      <SmallCard
+        img={song.img}
+        name={song.name}
+        id={song.id}
+        artist={song.artist}
+        mp3={song.mp3}
+        desc={song.desc}
+      />
       <button
         onClick={() => {
           userDataCtx.removeSong(song.id);

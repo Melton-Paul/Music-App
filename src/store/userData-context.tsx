@@ -71,7 +71,6 @@ export const UserDataContextProvider: React.FC<{
   }
 
   function addRecentlyPlayed(obj: song) {
-    console.log("Ran");
     if (recentlyPlayed.some((song) => song.id === obj.id)) {
       setRecentlyPlayed((prev) => prev.filter((songs) => songs.id !== obj.id));
       setRecentlyPlayed((prev) => [obj, ...prev]);
