@@ -50,6 +50,10 @@ export default function PlaySong() {
     });
   }, []);
 
+  React.useEffect(() => {
+    setIsPlaying(userDataCtx.pause);
+  }, [userDataCtx.pause]);
+
   function resetPlayer() {
     setIsShuffling(false);
     setIsPlaying(true);
@@ -85,7 +89,6 @@ export default function PlaySong() {
 
   React.useEffect(() => {
     if (songs.length > 0) {
-      console.log("greater than 0");
       if (isShuffling) {
         setSongData(shuffledSongs[songNum]);
       } else {

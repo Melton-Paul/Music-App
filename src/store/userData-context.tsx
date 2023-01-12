@@ -33,6 +33,8 @@ const userDataContext = React.createContext({
   removePlaylist: (name: string) => {},
   removeSong: (songId: string) => {},
   resetData: () => {},
+  pause: false,
+  togglePause: () => {},
 });
 
 let firstRender = true;
@@ -53,6 +55,7 @@ export const UserDataContextProvider: React.FC<{
     name: string;
     songs: song[];
   }>({ name: "", songs: [] });
+  const [pause, setPause] = React.useState(false);
 
   const [currentView, setCurrentView] = React.useState<{
     name: string;
@@ -85,6 +88,9 @@ export const UserDataContextProvider: React.FC<{
     } else {
       setRecentlyPlayed((prev) => [obj, ...prev]);
     }
+  }
+  function togglePause() {
+    setPause((prev) => !prev);
   }
 
   function setPlaylist(name: string, songs: song[]) {
@@ -225,6 +231,8 @@ export const UserDataContextProvider: React.FC<{
     currentView,
     playSong,
     song,
+    pause,
+    togglePause,
   };
 
   return (
