@@ -88,9 +88,6 @@ export const UserDataContextProvider: React.FC<{
       setRecentlyPlayed((prev) => [obj, ...prev]);
     }
   }
-  function togglePause() {
-    setPause((prev) => !prev);
-  }
 
   function setPlaylist(name: string, songs: song[]) {
     setCurrentPlaylist({ name, songs });
