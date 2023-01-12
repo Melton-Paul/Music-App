@@ -10,6 +10,16 @@
   justify-content: space-between;
   padding-bottom: 2rem;
 }
+.search-wrapper {
+  margin-top: -2rem;
+  margin-bottom: 3rem;
+  z-index: 5;
+}
+@media screen and (min-width: 880px) {
+  .search-wrapper {
+    display: none;
+  }
+}
 
 @media screen and (min-width: 1440px) {
   .songs-container {

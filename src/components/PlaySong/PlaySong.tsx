@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./PlaySong.module.css";
+import { gsap, Power4 } from "gsap";
 import userDataContext from "../../store/userData-context";
 import Player from "./Player/Player";
 
@@ -39,6 +40,15 @@ export default function PlaySong() {
 
     resetPlayer();
   }, [userDataCtx.song, userDataCtx.currentPlaylist]);
+
+  React.useLayoutEffect(() => {
+    gsap.from(`.${styles.container}`, {
+      y: window.innerHeight + 300,
+      opacity: 0,
+      duration: 1,
+      ease: Power4.easeOut,
+    });
+  }, []);
 
   function resetPlayer() {
     setIsShuffling(false);

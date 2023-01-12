@@ -33,7 +33,7 @@ function App() {
   }, []);
 
   const style = {
-    height: userDataCtx.song.name === "" ? "100vh" : "92vh",
+    minHeight: userDataCtx.song.name === "" ? "100vh" : "92vh",
   };
   const contentStyle = {
     paddingBottom: userDataCtx.song.name !== "" ? "20rem" : "3rem",
@@ -47,10 +47,10 @@ function App() {
     <>
       <main style={style}>
         <Navbar />
-        <div className="content" ref={scrollRef} style={contentStyle}>
+        <div className="content" ref={scrollRef}>
           <Topbar scroll={scroll} />
           <Transition>
-            <div className="content-lower">
+            <div className="content-lower" style={contentStyle}>
               <Routes>
                 {userDataCtx.currentView.songs.length > 0 && (
                   <Route path="/playlist" element={<ShowPlaylist />} />

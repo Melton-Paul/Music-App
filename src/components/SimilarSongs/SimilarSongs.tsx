@@ -29,8 +29,8 @@ export default function SimilarSongs() {
     let ctx = gsap.context(() => {
       gsap.from("article", {
         y: 3000,
-        duration: 2,
-        stagger: 0.15,
+        duration: 1.8,
+        stagger: 0.08,
         ease: Power4.easeOut,
       });
     }, containerRef);

@@ -20,10 +20,10 @@
 }
 .link {
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   color: rgb(189, 196, 196);
   align-self: flex-end;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   font-weight: bold;
 }
 .link:hover {
@@ -60,6 +60,9 @@
   }
   .similarSongs article {
     flex-shrink: 0;
+  }
+  .link {
+    margin-bottom: 1.5rem;
   }
 }
 @media screen and (min-width: 1400px) {

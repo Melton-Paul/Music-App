@@ -13,14 +13,15 @@ export default function SearchInput() {
   }
 
   return (
-    <div className={styles["search-input"]}>
+    <label htmlFor="search" className={styles["search-input"]}>
       <i className="fa-solid fa-magnifying-glass"></i>
       <input
+        id="search"
         type="text"
         placeholder="What do you want to listen to?"
         onChange={handleChange}
         value={value}
       />
-    </div>
+    </label>
   );
 }
