@@ -34,7 +34,6 @@ const userDataContext = React.createContext({
   removeSong: (songId: string) => {},
   resetData: () => {},
   pause: false,
-  togglePause: () => {},
 });
 
 let firstRender = true;
@@ -168,6 +167,21 @@ export const UserDataContextProvider: React.FC<{
   }, [authCtx.userId]);
 
   React.useEffect(() => {
+    window.addEventListener("keydown", (event) => {
+      if (event.code === "Space") {
+        setPause((prev) => !prev);
+      }
+    });
+    return () => {
+      window.removeEventListener("keydown", (event) => {
+        if (event.code === "Space") {
+          setPause((prev) => !prev);
+        }
+      });
+    };
+  }, []);
+
+  React.useEffect(() => {
     if (
       !authCtx.userId ||
       firstRender ||
@@ -232,7 +246,6 @@ export const UserDataContextProvider: React.FC<{
     playSong,
     song,
     pause,
-    togglePause,
   };
 
   return (

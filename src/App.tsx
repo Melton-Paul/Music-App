@@ -22,23 +22,6 @@ function App() {
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    window.addEventListener("keydown", (event) => {
-      console.log(event.code);
-      if (event.code === "Space") {
-        userDataCtx.togglePause();
-      }
-    });
-    return () => {
-      window.removeEventListener("keydown", (event) => {
-        console.log(event.code);
-        if (event.code === "Space") {
-          userDataCtx.togglePause();
-        }
-      });
-    };
-  }, []);
-
-  React.useEffect(() => {
     const ref = scrollRef.current!;
     ref.addEventListener("scroll", () => {
       setScroll(ref.scrollTop);
