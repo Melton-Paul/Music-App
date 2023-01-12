@@ -1,5 +1,4 @@
 import React from "react";
-import SearchInput from "../components/Search/SearchInput";
 import songContext from "../store/song-context";
 import MediumCard from "../components/SongCards/MediumCard/MediumCard";
 import styles from "./SearchPage.module.css";

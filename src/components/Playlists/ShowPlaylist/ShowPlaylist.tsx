@@ -1,7 +1,6 @@
 import React from "react";
 import userDataContext from "../../../store/userData-context";
 import SmallCard from "../../SongCards/SmallCard/SmallCard";
-import { Link } from "react-router-dom";
 import styles from "./ShowPlaylist.module.css";
 import DeleteModal from "../../DeleteModal/DeleteModal";
 
